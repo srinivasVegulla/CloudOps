@@ -1,0 +1,37 @@
+<div class="utilizationWidget">
+    <h2 class="utilizationHeader">UTILIZATION Overview</h2>
+    <div class="container-fluid">
+        <div class="row utilizationNavBar">
+            <div class="col-md-3 " [ngClass]="{'utlActiveTab': activeTab == 'costUtil'}" (click)="setActiveTab('costUtil')">Cost Utilization ($)</div>
+            <div class="col-md-3" [ngClass]="{'utlActiveTab': activeTab == 'cpuUtil'}" (click)="setActiveTab('cpuUtil')">CPU Utilization (%)</div>
+            <div class="col-md-3" [ngClass]="{'utlActiveTab': activeTab == 'ramtUtil'}" (click)="setActiveTab('ramtUtil')">RAM Utilization (GB)</div>
+            <div class="col-md-3" [ngClass]="{'utlActiveTab': activeTab == 'penality'}" (click)="setActiveTab('penality')">Panality ($)</div>
+        </div>
+        <div class="row">
+            <div *ngIf="this.showingFinalTentants.length > 0" class="col-md-6 utilizedContent">
+                <cops-guage-charts [_showingFinalTentants]="showingFinalTentants"></cops-guage-charts>
+            </div>
+            <div class="col-md-6 utilizedContent">
+                <div *ngFor="let x of showGraphCusVms; let i = index" class="horBarContainer">
+                    <ngx-charts-bar-horizontal
+                        [scheme]="colorScheme"
+                        [results]="x"
+                        [customColors]="showGraphCusVmsColors[i]"
+                        [gradient]="gradient"
+                        [xAxis]="showXAxis"
+                        [yAxis]="showYAxis"
+                        [xAxisTicks]= "[0,20,80,100]"
+                        [showYAxisLabel]="showYAxisLabel"
+                        [yAxisLabel]="yAxisLabel">
+                    </ngx-charts-bar-horizontal>
+                </div>
+            </div>
+        </div>
+        
+        <!-- <div *ngIf="this.showingFinalTentants.length > 0 && activeTab == 'cpuUtil'">
+                <cops-guage-charts [showingFinalTentants]="showingFinalTentants"></cops-guage-charts>
+            </div> -->
+    </div>
+</div>
+
+

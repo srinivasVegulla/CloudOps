@@ -1,0 +1,20 @@
+.bg-img{
+    height: 100vh;
+    background-image: url(../../assets/images/copsimages/Login2.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.loginInputs {
+    height: 100vh;
+}
+
+.loginInputsContainer {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.errorFont {
+    color: red;
+}

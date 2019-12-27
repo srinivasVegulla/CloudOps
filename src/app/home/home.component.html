@@ -1,0 +1,30 @@
+<div class="systemBar">
+    <div class="sysBarTitle CLOUD-Ops col-md-2">
+        <img src="assets/images/copsimages/Icons_Images/CloudOps_Logo.svg">
+    </div>
+    <div class="sysBarContent col-md-10">
+       <div class="hamburger">
+           <div class="hamburgerImage" (click)="toggleSideNav()">
+             <img src="assets/images/copsimages/Icons_Images/Hamburger_menu_24X24.svg">
+           </div>  
+        </div>
+       <div class="sysBarIcons">
+           <ul class="sysUListItems">
+               <li>Admin</li>
+               <li><img src="assets/images/copsimages/Icons_Images/Notifications_icon_24X24.svg"></li>
+               <li><img src="assets/images/copsimages/Icons_Images/Settings_24X24.svg"></li>
+               <li (click)="logout()">LogOut</li>
+           </ul>
+       </div>
+    </div>
+</div>
+
+<div class="mainContent">
+    <div class="nav" [ngClass]="{'col-md-2': !isSideNavOpen, 'navIcons': isSideNavOpen}">  
+        <cops-side-navigation [isSideNavOpen]="isSideNavOpen"></cops-side-navigation>  
+    </div>
+    
+    <div class="navContainer" [ngClass]="{'col-md-10': !isSideNavOpen, 'navIconMain': isSideNavOpen}">
+        <router-outlet></router-outlet>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+file:///root/Cops/src/app/home/home.component.html {"mtime":1575640637153,"size":1972,"etag":"349qldrkq21j","orphaned":false}
+<div class="systemBar">
+    <div class="sysBarTitle CLOUD-Ops col-md-2">
+        Cloud <span class="text-style-1"> Ops </span>  
+    </div>
+    <div class="sysBarContent col-md-10">
+       <div class="col-md-1 hamburger">
+           <div class="hamburgerImage" (click)="toggleSideNav()">
+                ===
+           </div>  
+        </div>
+       <div class="col-md-11 sysBarIcons">
+           <ul class="sysUListItems">
+               <li>Admin</li>
+               <li>Alert</li>
+               <li>Logout</li>
+           </ul>
+       </div>
+    </div>
+</div>
+
+<div class="mainContent">
+    <div class="col-md-2 nav" ng>
+        <ul class="navList">
+            <li routerLink="dashboard" routerLinkActive="activeNavLink"> 
+                <span class="col-md-3">img</span>
+                <span class="col-md-9">Dashboard</span>
+            </li>
+            <li routerLink="alerts" routerLinkActive="activeNavLink">  
+                <span class="col-md-3">img</span>
+                <span class="col-md-9">Alerts</span>
+            </li>
+            <li routerLink="ticketHistory" routerLinkActive="activeNavLink">  
+                <span class="col-md-3">img</span>
+                <span class="col-md-9">Ticket History</span>
+            </li>
+           <li routerLink="utilizationHistory" routerLinkActive="activeNavLink"> 
+                <span class="col-md-3">img</span>
+                <span class="col-md-9">Utilization Details</span>
+            </li>
+           <li routerLink="serviceHealth" routerLinkActive="activeNavLink"> 
+                <span class="col-md-3">img</span>
+                <span class="col-md-9">Service Health</span>
+            </li>
+           <li routerLink="logInsights" routerLinkActive="activeNavLink"> 
+                <span class="col-md-3">img</span>
+                <span class="col-md-9">Log Insights</span>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-10 navContainer">
+        <router-outlet></router-outlet>
+    </div>
+</div>

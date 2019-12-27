@@ -1,0 +1,32 @@
+
+
+.navContainer{
+    float: left;
+    height: calc(100vh - 68px);
+    overflow-y: scroll;
+}
+
+.navList {
+    list-style-type: none;
+    color: #bdbdbd;
+    cursor: pointer;
+}
+.navList li {
+    height: 45px;
+    line-height: 45px;
+    margin: 5px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.activeNavLink {
+ color: #ffffff;
+  border-left: 4px solid  #069eda;
+}
+.navList li span {
+    display: inline-block;
+}
+.imageOnlyWidth {
+    width: 65px;
+    text-align: center;
+}

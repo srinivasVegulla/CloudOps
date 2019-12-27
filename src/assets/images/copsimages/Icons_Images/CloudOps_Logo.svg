@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="136" height="36" viewBox="0 0 136 36">
+  <g id="Group_1" data-name="Group 1" transform="translate(3.5 1.5)">
+    <rect id="Rectangle_1" data-name="Rectangle 1" width="136" height="36" transform="translate(-3.5 -1.5)" fill="none"/>
+    <text id="CLOUD_Ops" data-name="CLOUD Ops" transform="translate(28 7.5)" fill="#fff" font-size="19" font-family="Roboto-Black, Roboto" font-weight="800"><tspan x="0" y="18">CLOUD </tspan><tspan y="18" font-family="Roboto-Light, Roboto" font-weight="300">Ops</tspan></text>
+    <g id="cloud_circle-24px" transform="translate(0 2.5)">
+      <path id="Path" d="M0,0H26V28H0Z" fill="none"/>
+      <path id="Shape" d="M11,23A11.271,11.271,0,0,1,0,11.5,11.271,11.271,0,0,1,11,0,11.271,11.271,0,0,1,22,11.5,11.271,11.271,0,0,1,11,23ZM6.6,9.2A3.381,3.381,0,0,0,3.3,12.65,3.381,3.381,0,0,0,6.6,16.1h9.35a2.878,2.878,0,0,0,0-5.75H15.4A4.678,4.678,0,0,0,14.11,7.1,4.276,4.276,0,0,0,11,5.75,4.424,4.424,0,0,0,6.754,9.212Z" transform="translate(2 3)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

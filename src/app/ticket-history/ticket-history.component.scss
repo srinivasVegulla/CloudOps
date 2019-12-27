@@ -1,0 +1,72 @@
+.utilizationWidget {
+    background-color: #ffffff;
+    height: calc(100vh - 98px);
+    padding: 15px;
+ }
+ .utilizationHeader {
+   height: 45px;
+   font-family: Roboto;
+   font-size: 30px;
+   font-weight: 300;
+   color: #069eda;
+ }
+ .dataTableHeader {
+     background-color: rgba(94, 162, 144, 0.3);
+     height: 50px;
+     line-height: 50px;
+     padding: 0 10px;
+ }
+ .tableInputContainer {
+    padding: 5px 10px;
+    width: 80%;
+    
+ }
+ .tableInput{
+     height: 30px;
+     width: 100%;
+     border-radius: 4px;
+     border: solid 1px #dbdbdb;
+     background-color: #ffffff;
+ }
+
+ .logInsightTable{
+     //width: 99%;
+     height: calc(100vh - 200px);
+ }
+ .alertImgContainer {
+     width: 20px;
+     margin: 0 auto;
+ }
+
+ .datatable-icon-down:before {
+    content: '\65';
+  }
+
+  .datatable-icon-right:before {
+    content: '\66';
+  }
+
+.txtAlignRight {
+ text-align: center;
+}
+
+.datatable-row-detail {
+    overflow-y: hidden;
+    overflow-x: hidden !important;
+    background-color: #d8d8d8;
+}
+
+.btnSeverity {
+    border-radius: 5px;
+    color: #ffffff;
+    background-color: #f94667;
+    padding: 2px 15px;
+}
+
+.detailRow {
+    height: 40px;
+    line-height: 40px;
+}
+.warning{
+    background-color: #ff9200;
+}

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="Group_1" data-name="Group 1" transform="translate(7802 10539)">
+    <g id="info-24px" transform="translate(-7801 -10538)">
+      <path id="Path" d="M0,0H17.124V17.124H0Z" transform="translate(3.85 3.849)" fill="none"/>
+      <path id="Shape" d="M11,22A11,11,0,0,1,6.72.865a11,11,0,0,1,8.561,20.27A10.923,10.923,0,0,1,11,22Zm-.943-11.943v6.914h2.514V10.057Zm0-4.4V8.172h2.514V5.657Z" transform="translate(0 0)" fill="#5e5e5e" stroke="#fff" stroke-miterlimit="10" stroke-width="1"/>
+    </g>
+    <rect id="Rectangle_1" data-name="Rectangle 1" width="24" height="24" transform="translate(-7802 -10539)" fill="none"/>
+  </g>
+</svg>

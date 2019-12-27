@@ -1,0 +1,12 @@
+
+<div>
+    <div *ngFor= "let tenant of showingFinalTentants;let i = index">
+        <div class="spaceBwCharts">
+            <div class="chartPadding tenantName">{{tenant?.tenantName | uppercase}}</div>
+            <div class="chartPadding">Overall Utilization: {{tenant?.percentage}} %</div>
+            <div id="chartDiv{{i}}" class="mainChart"></div>
+        </div>
+    </div>
+</div>
+
+

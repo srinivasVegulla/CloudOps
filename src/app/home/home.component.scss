@@ -1,0 +1,88 @@
+.systemBar {
+    height: 68px;
+    line-height: 68px;
+    
+}
+.sysBarTitle {
+    background-color: #069eda;  
+    text-align: center;
+    //width: 20%;
+    float: left;
+}
+.sysBarContent { 
+    float: left;
+    box-shadow: 0 1px 4px 0 rgba(185, 185, 185, 0.5);
+}
+.hamburger {
+    display: inline-block;
+}
+.hamburgerImage {
+    width: 30px;
+    margin: 0 auto;
+    color: #069eda;
+}
+.sysBarIcons{
+    float: right;
+}
+
+.sysUListItems {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+.sysUListItems li{
+    display: inline-block;
+    color: #757575;;
+    font-weight:bold;
+    padding: 0 16px;
+    text-decoration: none;
+    font-family: Roboto;
+    font-weight: 500;
+}
+
+.mainContent { 
+    height: calc(100vh - 68px);
+    background-color: #f0f0f0;
+    
+}
+
+.nav{
+    float: left;
+    background-color: #2a3847;
+    height: calc(100vh - 68px);
+    
+}
+.navContainer{
+    padding-top: 15px;
+    float: left;
+    height: calc(100vh - 68px);
+    overflow-y: scroll;
+}
+
+.navList {
+    list-style-type: none;
+    color: #bdbdbd;
+   
+}
+.navList li {
+    height: 45px;
+    margin: 5px 0;
+}
+.activeNavLink {
+ color: #ffffff;
+  border-left: 4px solid  #069eda;
+}
+.navList li span {
+    display: inline-block;
+    
+}
+.navIcons {
+    width: 70px;
+}
+.navIconMain {
+    width: calc(100% - 70px);
+    padding: 0 15px;
+}
+

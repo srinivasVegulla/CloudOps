@@ -1,0 +1,130 @@
+<div class="utilizationWidget">
+    <h2 class="utilizationHeader">Tickets History</h2>
+
+<ngx-datatable #ticHistoryTable class="logInsightTable material striped" [rows]="rows" [scrollbarH]="true"  [scrollbarV]="true"  [rowClass]="getRowClass"
+[columnMode]="'force'" [headerHeight]="90" [footerHeight]="50" [rowHeight]="50" [limit]="10"
+>
+
+<ngx-datatable-row-detail rowHeight="160" #myDetailRow (toggle)="onDetailToggle($event)">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+          <div class="row ticHis">
+              <div class="col-md-6">
+                <!-- <div class="col-md-5 txtAlignRight">Priority </div>
+                <div class="col-md-6">: <span class="btnSeverity">{{row.severity}}</span></div>
+                <div class="col-md-5 txtAlignRight">Status </div>
+                <div class="col-md-6">: AutoRemediated</div>
+                <div class="col-md-5 txtAlignRight">IP Address</div>
+                <div class="col-md-6">: {{row.severity}}</div>
+                <div class="col-md-5 txtAlignRight">Details</div>
+                <div class="col-md-6">: {{row.info}}</div> -->
+                <div class="row detailRow" *ngFor="let obj of tableObj.leftSide">
+                    <div class="col-md-6 txtAlignRight">{{obj?.displayName}} </div>
+                    <div class="col-md-6">: <span [ngClass]="{'btnSeverity' : obj['isSpecialCss'], 'warning': (row[obj?.key] == 'WARNING' && obj['isSpecialCss']) }">{{row[obj?.key]}}</span></div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="row detailRow" *ngFor="let obj of tableObj.rightSide">
+                    <div class="col-md-6 txtAlignRight">{{obj?.displayName}} </div>
+                    <div class="col-md-6">: <span [ngClass]="{'btnSeverity' : obj['isSpecialCss']}"> {{row[obj?.key]}}</span></div>
+                </div>
+                    <!-- <div class="row">
+                        <div class="col-md-5 txtAlignRight">Integration</div>
+                        <div class="col-md-6">{{row.vitrage_resource_type}}</div>
+                        <div class="col-md-5 txtAlignRight">Respondes</div>
+                        <div class="col-md-6">TCS</div>
+                        <div class="col-md-5 txtAlignRight">Alias</div>
+                        <div class="col-md-6">{{row.vitrage_type}}</div>
+                        <div class="col-md-5 txtAlignRight">Last Updated At</div>
+                        <div class="col-md-6">{{row.update_timestamp | date : 'medium'}}</div>
+                    </div> -->
+              </div>
+          </div>
+        </ng-template>
+      </ngx-datatable-row-detail>
+
+<ngx-datatable-column  [sortable]="true" [sortable]="true" prop="severity">
+    <ng-template let-column="column" ngx-datatable-header-template> 
+       <div class="dataTableHeader">Severity</div>
+       <div class="tableInputContainer">
+            <select class="tableInput" (change)="updateFilter($event, 'severity')">
+                <option value="">Select</option>
+                <option value="CRITICAL"><div style="background-image: url(../../assets/images/copsimages/Icons_Images/Critical_Alerts_24X24.svg);">
+                        CRITICAL
+                </div></option>
+                <option value="WARNING" style="background-image: url(../../assets/images/copsimages/Icons_Images/Major_Alerts_24X24.svg);">WARNING</option>
+            </select>
+       </div>
+    </ng-template>
+    <ng-template let-row="row" width="400"  class="xyz" ngx-datatable-cell-template>
+        <div class="alertImgContainer">
+            <img *ngIf="(row?.severity == 'CRITICAL')" src="assets/images/copsimages/Icons_Images/Critical_Alerts_24X24.svg">
+            <img  *ngIf="(row?.severity == 'WARNING')" class="alertImgContainer" src="assets/images/copsimages/Icons_Images/Major_Alerts_24X24.svg">
+        </div>
+    </ng-template>      
+</ngx-datatable-column>
+
+<ngx-datatable-column [sortable]="true" >
+<ng-template let-column="column" ngx-datatable-header-template> 
+    <div class="dataTableHeader">Ticket Id</div>
+    <div class="tableInputContainer" >
+        <input type="text" class="tableInput" (keyup)="updateFilter($event, 'ticketID')">
+    </div>
+</ng-template>
+<ng-template let-row="row" width="200" ngx-datatable-cell-template>
+  {{row?.ticketID}}
+</ng-template>
+</ngx-datatable-column>
+
+<ngx-datatable-column [sortable]="true" prop="info">
+<ng-template let-column="column" ngx-datatable-header-template> 
+    <div class="dataTableHeader">Alert Description</div>
+    <div class="tableInputContainer" >
+        <input type="text" class="tableInput" (keyup)="updateFilter($event, 'info')">
+    </div>     
+</ng-template>
+<ng-template let-row="row" width="200" ngx-datatable-cell-template>
+    {{row.info}}
+</ng-template>
+</ngx-datatable-column>
+
+<ngx-datatable-column>
+        <ng-template let-column="column" ngx-datatable-header-template>
+                <div class="dataTableHeader">TOGGLE</div>
+               </ng-template>
+<ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+  <a
+    href="javascript:void(0)"
+    [class.datatable-icon-right]="!expanded"
+    [class.datatable-icon-down]="expanded"
+    title="Expand/Collapse Row"
+    (click)="toggleExpandRow(row)"
+  >
+  </a>
+</ng-template>
+</ngx-datatable-column>
+
+<!-- <ngx-datatable-column [sortable]="true" prop="service">
+<ng-template let-column="column" ngx-datatable-header-template> 
+    <div class="dataTableHeader">Service</div>
+    <div class="tableInputContainer" >
+        <input type="text" class="tableInput" (keyup)="updateFilter($event, 'service')">
+    </div>  
+</ng-template>
+<ng-template let-row="row"  width="500" ngx-datatable-cell-template>
+  {{row.service}}
+</ng-template>
+</ngx-datatable-column>
+
+<ngx-datatable-column [sortable]="true">
+    <ng-template let-column="column" ngx-datatable-header-template> 
+        <div class="dataTableHeader">Message</div>      
+    </ng-template>
+    <ng-template let-row="row" width="400" ngx-datatable-cell-template>
+        {{row.message}}
+    </ng-template>
+</ngx-datatable-column> -->
+
+
+</ngx-datatable>
+
+</div>

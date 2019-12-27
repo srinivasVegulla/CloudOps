@@ -1,0 +1,66 @@
+<div class="custom-container">
+    <div class="row">
+        <!-- TELCO CLOUDOPS MANAGEMENT -->
+        <div class="col-md-6 bg-img">
+            <div class="col-md-12" style="padding-top:20px;">
+                <h1 style="color: white">CloudOps<br> Management Suite</h1>
+            </div>
+        </div>
+        <div class="col-md-6 loginInputs">
+            <div class="loginInputsContainer">
+                <div class="row log-inpt">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8 form-group">
+                        <img src="assets/images/copsimages/Ericsson_logo.jpg">
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <form [formGroup]="loginForm" #logFm="ngForm">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8 form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" class="form-control" formControlName="username">
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                    <div class="row" *ngIf="username.invalid && (username.dirty || username.touched)">
+                        <div class="col-md-2"></div>
+                        <div *ngIf="username.errors.required" class="col-md-8 form-group errorFont">
+                             User Name is required.
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8 form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" class="form-control" formControlName="password" required>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                    <div class="row" *ngIf="password.invalid && (password.dirty || password.touched)">
+                        <div class="col-md-2"></div>
+                        <div *ngIf="password.errors.required" class="col-md-8 form-group errorFont">
+                                Password is required.
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                    <div class="row" *ngIf="loginError">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8 form-group errorFont">
+                                   UN or  Password is wrong.
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-4">
+                            <button class="btn btn-primary" type="button" [disabled]="loginForm.invalid" (click)="onLogin(loginForm.value)">Login</button>
+                        </div>
+                    </div>
+                </form>               
+            </div>          
+        </div>
+    </div>
+</div>

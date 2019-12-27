@@ -1,0 +1,43 @@
+<ul class="navList">
+    <li routerLink="dashboard" routerLinkActive="activeNavLink" (click)="setActiveLink('dashboard')"> 
+        <span [ngClass]="{'col-md-2': !isSideNavOpen, imageOnlyWidth: isSideNavOpen}">
+            <img *ngIf="activatedLink != 'dashboard'" src="assets/images/copsimages/Icons_Images/Dashboard_18X18_grey.svg">
+            <img *ngIf="activatedLink == 'dashboard'" src="assets/images/copsimages/Icons_Images/Dashboard_18X18.svg"></span>
+        <span class="col-md-10" *ngIf="!isSideNavOpen">Dashboard</span>
+    </li>
+    <li routerLink="alerts" routerLinkActive="activeNavLink" (click)="setActiveLink('alerts')">
+        <span [ngClass]="{'col-md-2': !isSideNavOpen, imageOnlyWidth: isSideNavOpen}">
+                <img *ngIf="activatedLink == 'alerts'" src="assets/images/copsimages/Icons_Images/Alerts_18X18_blue.svg">
+                <img *ngIf="activatedLink != 'alerts'" src="assets/images/copsimages/Icons_Images/Alerts_18X18_grey.svg">
+        </span>
+        <span class="col-md-10" *ngIf="!isSideNavOpen">Alerts</span>
+    </li>
+    <li routerLink="ticketHistory" routerLinkActive="activeNavLink" (click)="setActiveLink('ticketHistory')">  
+        <span [ngClass]="{'col-md-2': !isSideNavOpen, imageOnlyWidth: isSideNavOpen}">
+                <img *ngIf="activatedLink == 'ticketHistory'" src="assets/images/copsimages/Icons_Images/Tickets_history_18X18_blue.svg">
+                <img *ngIf="activatedLink != 'ticketHistory'" src="assets/images/copsimages/Icons_Images/Tickets_history_18X18_grey.svg">
+        </span>
+        <span class="col-md-10" *ngIf="!isSideNavOpen">Ticket History</span>
+    </li>
+    <li routerLink="utilizationHistory" routerLinkActive="activeNavLink" (click)="setActiveLink('utilizationHistory')"> 
+        <span [ngClass]="{'col-md-2': !isSideNavOpen, imageOnlyWidth: isSideNavOpen}">
+            <img *ngIf="activatedLink == 'utilizationHistory'" src="assets/images/copsimages/Icons_Images/Utilization_18X18_blue.svg">
+            <img *ngIf="activatedLink != 'utilizationHistory'" src="assets/images/copsimages/Icons_Images/Utilization_18X18_grey.svg">
+        </span>
+        <span class="col-md-10" *ngIf="!isSideNavOpen">Utilization Details</span>
+    </li>
+    <li routerLink="serviceHealth" routerLinkActive="activeNavLink" (click)="setActiveLink('serviceHealth')"> 
+        <span [ngClass]="{'col-md-2': !isSideNavOpen, imageOnlyWidth: isSideNavOpen}">
+            <img *ngIf="activatedLink == 'serviceHealth'" src="assets/images/copsimages/Icons_Images/ServiceHealth_18X18_blue.svg">
+            <img *ngIf="activatedLink != 'serviceHealth'" src="assets/images/copsimages/Icons_Images/ServiceHealth_18X18_grey.svg">
+        </span>
+        <span class="col-md-10" *ngIf="!isSideNavOpen">Service Health</span>
+    </li>
+    <li routerLink="logInsights" routerLinkActive="activeNavLink" (click)="setActiveLink('logInsights')"> 
+        <span [ngClass]="{'col-md-2': !isSideNavOpen, imageOnlyWidth: isSideNavOpen}">
+            <img *ngIf="activatedLink == 'logInsights'" src="assets/images/copsimages/Icons_Images/LogInsights_18X18_blue.svg">
+                <img *ngIf="activatedLink != 'logInsights'" src="assets/images/copsimages/Icons_Images/LogInsights_18X18_grey.svg">
+        </span>
+        <span class="col-md-10" *ngIf="!isSideNavOpen">Log Insights</span>
+    </li>
+</ul>

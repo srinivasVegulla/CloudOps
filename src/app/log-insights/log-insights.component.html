@@ -1,0 +1,69 @@
+<div class="utilizationWidget">
+        <h2 class="utilizationHeader">LOG Insights</h2>
+
+<ngx-datatable class="logInsightTable material" [rows]="rows" [scrollbarH]="true"  [scrollbarV]="true"
+  [columnMode]="'force'" [headerHeight]="90" [footerHeight]="50" [rowHeight]="50" [limit]="10"
+  >
+
+  <ngx-datatable-column  [sortable]="true" [sortable]="true" prop="timestamp">
+        <ng-template let-column="column" let-sort="sortFn" let-sortDir="sortDir" ngx-datatable-header-template> 
+           <div class="dataTableHeader" (click)="sort($event, sortDir, sortFn)">Date & Time
+                <!-- <span class="sort-btn"
+                [class.sort-asc]="sortDir === 'asc'"
+                [class.datatable-icon-up]="sortDir === 'asc'" 
+                [class.sort-desc]="sortDir === 'desc'"
+                [class.datatable-icon-down]="sortDir === 'desc'"  
+              ></span> -->
+           </div>
+        </ng-template>
+        <ng-template let-row="row" width="400"  class="xyz" ngx-datatable-cell-template>
+          {{row.timestamp | date:'medium'}}
+        </ng-template>      
+  </ngx-datatable-column>
+
+  <ngx-datatable-column [sortable]="true" prop="loglevel">
+    <ng-template let-column="column" ngx-datatable-header-template> 
+        <div class="dataTableHeader">Log level</div>      
+    </ng-template>
+    <ng-template let-row="row" width="200" ngx-datatable-cell-template>
+      {{row.loglevel}}
+    </ng-template>
+  </ngx-datatable-column>
+  
+  <ngx-datatable-column [sortable]="true" >
+    <ng-template let-column="column" ngx-datatable-header-template> 
+        <div class="dataTableHeader">Host</div>
+        <div class="tableInputContainer" >
+            <input type="text" class="tableInput" (keyup)="updateFilter($event, 'host', 'name')">
+        </div>     
+    </ng-template>
+    <ng-template let-row="row" width="200" ngx-datatable-cell-template>
+      {{row.host.name}}
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column [sortable]="true" prop="service">
+    <ng-template let-column="column" ngx-datatable-header-template> 
+        <div class="dataTableHeader">Service</div>
+        <div class="tableInputContainer" >
+            <input type="text" class="tableInput" (keyup)="updateFilter($event, 'service')">
+        </div>  
+    </ng-template>
+    <ng-template let-row="row"  width="500" ngx-datatable-cell-template>
+      {{row.service}}
+    </ng-template>
+  </ngx-datatable-column>
+
+    <ngx-datatable-column [sortable]="true">
+        <ng-template let-column="column" ngx-datatable-header-template> 
+            <div class="dataTableHeader">Message</div>      
+        </ng-template>
+        <ng-template let-row="row" width="400" ngx-datatable-cell-template>
+            {{row.message}}
+        </ng-template>
+   </ngx-datatable-column>
+
+
+</ngx-datatable>
+
+</div>

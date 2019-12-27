@@ -1,0 +1,43 @@
+ #chartdivz {
+    width: 90%;
+    height: 600px;
+    margin:  0 auto;
+} 
+
+.serviceHealthWidget {
+   // background-color: #ffffff;
+   // height: 900px;
+ }
+ .serviceHealthHeader {
+   height: 45px;
+   padding: 10px 0 0 15px;
+   font-family: Roboto;
+   font-size: 30px;
+   font-weight: 300;
+   color: #069eda;
+ }
+ .shWidget {
+    background-color: #ffffff;
+    height: 700px;
+   
+ }
+ .slightPadding {
+    padding: 0 5px !important;
+ }
+ .chartFooter{
+    height: 50px;
+    line-height: 50px;
+    padding-right: 15%;
+    float: right;
+ }
+ .rectangle {
+     float: left;
+    width: 21px;
+    height: 10px;
+    border-radius: 7.5px;
+    margin: 20px;
+    background-color: #f94667;
+ }
+ .serDown {
+     float: left;
+ }
