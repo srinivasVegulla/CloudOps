@@ -36,4 +36,28 @@
     height: 45px;
     color: red;
 }
+.wid{
+    width: 100%;
+}
 
+.preNxtBtn{
+  padding: 0 10px;
+  cursor: pointer;
+  margin: 0 5px;
+  background-color: #ffffff;
+  border: none;
+}
+.selectInput {
+    cursor: pointer;
+    background-color: #ffffff;
+    width: 50px;
+    border: none;
+    padding: 5px;
+    height: 30px;
+    line-height: 30px;
+}
+.optionInput {
+    cursor: pointer;
+    background-color: #ffffff;
+    padding: 5px;
+}

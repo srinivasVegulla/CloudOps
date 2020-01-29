@@ -17,7 +17,7 @@ export class SideNavigationComponent implements OnInit {
 
   ngOnInit() {
     this.splitedLinks = window.location.pathname.split('/');
-    this.activatedLink = this.splitedLinks[this.splitedLinks.length -1];
+   this.activatedLink = this.splitedLinks[this.splitedLinks.length -1];
   }
 
 

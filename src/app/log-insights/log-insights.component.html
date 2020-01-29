@@ -1,8 +1,8 @@
 <div class="utilizationWidget">
         <h2 class="utilizationHeader">LOG Insights</h2>
 
-<ngx-datatable class="logInsightTable material" [rows]="rows" [scrollbarH]="true"  [scrollbarV]="true"
-  [columnMode]="'force'" [headerHeight]="90" [footerHeight]="50" [rowHeight]="50" [limit]="10"
+<ngx-datatable class="logInsightTable material" [rows]="rows" [scrollbarH]="true"  [scrollbarV]="true" [limit]=4 [count]=4
+  [columnMode]="'force'" [headerHeight]="90" [footerHeight]="50" [rowHeight]="50" 
   >
 
   <ngx-datatable-column  [sortable]="true" [sortable]="true" prop="timestamp">
@@ -63,6 +63,29 @@
         </ng-template>
    </ngx-datatable-column>
 
+   <ngx-datatable-footer>
+    <ng-template 
+      ngx-datatable-footer-template
+        >
+        <div class="row wid">
+          <div class="col-md-4"></div>
+          <div class="col-md-3">
+            Rows per page <select class="selectInput" (change)="updateRecPerPage($event.target.value)" value={{rowsPerPage}}>
+              <option class="optionInput" *ngFor="let x of recperpage" value="{{x}}">{{x}}</option>
+            </select>
+          </div>
+          <div class="col-md-2"> {{((currentPage-1)*this.rowsPerPage)+1}} - <span *ngIf="currentPage != totalPages">{{this.currentPage*this.rowsPerPage}}</span>
+            <span *ngIf="currentPage == totalPages">{{totalRecords.length}}</span> of {{totalRecords.length}}
+          </div>
+          <div class="col-md-3">
+            <button class="preNxtBtn" [disabled]="currentPage == 1" (click) = previous()>Previous</button>
+            <button class="preNxtBtn" [disabled]="currentPage == totalPages" (click)=next()>Next</button>
+          </div>
+        </div>
+        
+        
+    </ng-template>
+  </ngx-datatable-footer>
 
 </ngx-datatable>
 

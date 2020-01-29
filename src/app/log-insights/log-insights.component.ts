@@ -10,7 +10,11 @@ export class LogInsightsComponent implements OnInit {
 
   logInsightData;
   rows = [];
-  filterData = [];
+  totalRecords = [];
+  rowsPerPage = 10;
+  recperpage = [5,10,15,20];
+  totalPages;
+  currentPage = 1;
 
   constructor(private copsService:CopsService) { }
 
@@ -21,29 +25,52 @@ export class LogInsightsComponent implements OnInit {
       for(let i=0; i<this.logInsightData.length; i++) {
         data.push(this.logInsightData[i]["_source"]);
       }
-      this.rows = data;
-      this.filterData = data;
+      this.totalRecords = data;
+      this.calculatePages();
     });
   }
 
   updateFilter(event, colName, innerColname) {
     let searchValue = event.target.value.toLowerCase();
     if (!searchValue) {
-      this.rows = this.filterData;
+      this.rows = this.totalRecords;
     }
     let temp
     if (innerColname) {
-       temp = this.filterData.filter(function(currItem) {
+       temp = this.totalRecords.filter(function(currItem) {
         return currItem[colName][innerColname].toLowerCase().indexOf(searchValue) !== -1 || !searchValue;
       });
     } else {
-       temp = this.filterData.filter(function(currItem) {
+       temp = this.totalRecords.filter(function(currItem) {
         return currItem[colName].toLowerCase().indexOf(searchValue) !== -1 || !searchValue;
       });
     }
 
     this.rows = temp;
   }
+  calculatePages() {
+    this.totalPages = ((this.totalRecords.length % this.rowsPerPage) == 0) ? (this.totalRecords.length / this.rowsPerPage): Math.ceil(this.totalRecords.length /this.rowsPerPage);
+    this.paginate();
+  }
+  
 
+  updateRecPerPage(page) {
+    this.rowsPerPage = page;
+    this.currentPage = 1;
+    this.calculatePages();
+  }
+
+  paginate() {
+    this.rows = this.totalRecords.slice(((this.currentPage-1)*this.rowsPerPage), ((this.currentPage)*this.rowsPerPage));
+  }
+
+  previous() {
+    this.currentPage -= 1;
+    this.paginate();
+  }
+  next() {
+    this.currentPage += 1;
+    this.paginate();
+  }
 
 }

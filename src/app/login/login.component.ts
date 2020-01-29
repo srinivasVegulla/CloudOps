@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(loginData) {
- //   console.log('hi lSer.isLogIn', localStorage.getItem("redirectUrl"));
+   console.log('hi lSer.isLogIn', loginData);
     this.loginService.login(loginData).subscribe(
       (response: any) => {
         if(response == true) {

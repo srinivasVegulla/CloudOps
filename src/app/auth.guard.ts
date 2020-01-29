@@ -38,7 +38,7 @@ export class AuthGuard implements CanActivate {
 
 
     // Store the attempted URL for redirecting
-    localStorage.setItem("anila", `hey its anila`);
+   
     localStorage.setItem("redirectUrl", `${url}`);
 
     // Navigate to the login page 
