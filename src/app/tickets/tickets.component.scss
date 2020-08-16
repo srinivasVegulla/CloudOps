@@ -1,0 +1,326 @@
+.dataTableHeader {
+    //background-color: rgba(94, 162, 144, 0.3);
+    //height: 50px;
+    line-height: 35px;
+    color: #0b0e0e;
+   // color:rgb(118, 118, 118);
+    font-size:11px;
+    font-weight: bold;
+    height:80px;
+    width: 100%;
+   // opacity: 0.76;
+    background-color: #e1e6eb;
+    opacity: 0.6;
+    font-family: Roboto;
+}
+.tableInputContainer {
+   //padding: 5px 0;
+   width: 77%; 
+   //background-color: white;
+   left:10px;
+   margin: 0 auto;
+}
+.cursor{
+    cursor: pointer;
+}
+.tableInput{
+    font-size: 13px;
+    height: 32px;
+    width: 100%;
+    border-radius: 4px;
+    //border: solid 1px #dbdbdb; 
+    text-align: left;
+    padding: 0 5px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    border: solid 1px #ced2d4;
+    font-weight: 500;
+    letter-spacing: -0.05px;
+    color: #000000;
+}
+.form-control:focus /* => from bootstrap css */
+{
+    outline: none !important;
+    box-shadow: none!important;
+}
+select:focus /* => from bootstrap css */
+{
+ outline: none !important;
+ box-shadow: none!important;
+ //box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25); /* => this cause the highlight! */
+}
+ select{
+    appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 0 8px;
+  font-weight: 500;
+    letter-spacing: -0.05px;
+    color: #000000;
+}
+/*.tableInput::after{
+content: "\e900"; /* HTML symbol */
+  /* Reposition 
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 10px;
+  line-height: 40px; /* Vertical center text 
+}*/
+.tableInput::after{
+    content: "";
+
+    position: absolute;
+    
+    top: 53%;
+    
+   // right: 95%;
+    
+   // border-width: 15px;
+   right: 22%;
+
+   border-width: 4px;
+    border-color: black transparent transparent transparent;
+    
+    border-style: solid;
+}
+.seinput::after{
+    content: "";
+
+    position: absolute;
+    
+    top: 45%;
+    right: 29%;
+
+   border-width: 4px;
+    border-color: black transparent transparent transparent;
+    
+    border-style: solid;
+}
+
+
+.logInsightTable{
+    width: 99%;
+    height: calc(100vh - 230px);
+}
+.datatable-icon-up:before {
+   content: '@' !important;
+   height: 45px;
+   color: red;
+}
+.wid{
+   width: 100%;
+   font-family: Roboto;
+font-size: 12px;
+font-weight: 500;
+}
+
+.preNxtBtn{
+ padding: 0 10px;
+// cursor: pointer;
+ margin: 0 5px;
+ background-color: #ffffff;
+ border: none;
+ height: 30px;
+border-radius: 4px;
+border: solid 1px #e1e6eb;
+font-family: Roboto;
+font-size: 12px;
+font-weight: 500;
+}
+.selectInput {
+   cursor: pointer;
+   background-color: #ffffff;
+   width: 50px;
+   border: none;
+   //padding: 5px;
+  // height: 30px;
+   line-height: 30px;
+}
+.optionInput {
+   cursor: pointer;
+   background-color: #ffffff;
+   padding: 5px;
+}
+
+.widgetRow {
+    margin: 15px 0;
+}
+
+.cardsContainer {
+    margin-bottom: 40px;
+    margin-top: 25px;
+}
+.tabsContainer {
+  height: 46px;
+  border-radius: 4px;
+}
+
+.ticHistUListItems {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    border-bottom: solid 1px #cdcccc;
+}
+
+.ticHistUListItems li{
+    display: inline-block;
+    background-color: #e1e6eb;
+    font-weight:bold;
+    padding: 0 24px;
+    text-decoration: none;
+    font-family: Roboto;
+   // font-weight: 500;
+    height: 40px;
+    line-height: 46px;
+    font-size: 13px;
+}
+
+.ticActive {
+    background-color: #ffffff !important;
+    color: #007ad5;
+}
+
+.createTic {
+    background-color: #007ad5 !important;
+    color: #ffffff !important;
+   // margin: 7px 0;
+    border-radius: 5px;
+    width: 120px;
+    text-align: center;
+    padding: 0 5px !important;
+    height: 32px !important;
+    line-height: 32px !important;
+    font-size: 12px;
+    width: 120px;
+}
+
+.modal-ticket-background{
+    position:fixed;
+    top:0;
+    right: 0;
+    left: 0;
+    bottom:0;
+    background-color: #000;
+    opacity:0.75;
+    z-index:900;
+}
+.tablebody{
+    text-align: center;
+    vertical-align: middle !important;
+
+}
+.fontrow{
+    text-align: center;
+    vertical-align: middle !important;
+    font-size: 12px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal !important;
+    font-family: Roboto;
+    color:#000000;
+}
+
+.alertImgContainer {
+    width: 30px;
+    height: 30px;
+    display: block;
+    margin: 0 auto;
+}
+
+//select#sevrty option[value="critical"]   { background-image:url(app/assets/images/Critical.png);} 
+
+//select#sevrty option[value="female"] { background-image:url(female.png); }
+//select#sevrty option[value="others"] { background-image:url(others.png); }
+/*::ng-deep .datatable-row-center{
+    background-color: white !important;
+    overflow: auto;
+    &:hover {
+        background-color: blueviolet;
+     }
+     &.active {
+        color: gold;
+        background-color: green;
+     }
+ }*/
+ ::ng-deep .ngx-datatable .datatable-body .datatable-body-row >div .datatable-body-cell{
+    padding: 0.75rem;
+    vertical-align: bottom !important;
+  //  border-top: 1px solid #d1d4d7;
+ }
+ ::ng-deep .ngx-datatable .datatable-body .datatable-body-row .datatable-body-cell > div {
+   // display: flex !important;
+    align-items: center !important;
+    vertical-align: middle !important;
+ }
+::ng-deep .datatable-body-row {
+    display: flex !important;
+    align-items: center !important;
+    vertical-align: middle !important;
+   // color: black;
+   // border-bottom: 1px solid grey;
+    //padding-bottom: 10px;
+    //margin-bottom: 20px;
+    background-color: white !important;
+   // overflow: auto;
+    &:hover {
+        background-color: #ece9e9 !important;
+     }
+     &.active {
+        color: gold;
+        background-color: green !important;
+     }
+  
+ }
+
+.modalDialog{
+    position:fixed;
+   
+    background-color: white;
+    border-radius: 6px;
+    z-index:1000;
+    top:50px;
+    width:30%;
+    
+    
+}
+.modalHeader{
+   
+    border-bottom: 1px solid black;
+    padding:15px;
+}
+.modalBody{
+    padding:30px;
+}
+.right{float: right;}
+.btn-default{
+    border: 1px solid #ced4da;
+    color:#0062cc;
+}
+.closeModalDialog{
+    float:right;
+    cursor: pointer;
+    text-align: center;
+    color:#333333;
+    width:30px;
+    height:30px;
+    
+
+}
+.timeActive{
+    color:red;
+}
+
+
+
+/*datatable-body-cell{
+    word-wrap: break-word;
+}*/
+::ng-deep .ngx-datatable.fixed-header .datatable-header .datatable-header-inner .datatable-header-cell input{
+   // word-wrap: break-word;
+  // overflow: visible !important;
+  //  text-overflow: ellipsis !important;
+   // white-space: normal !important;
+    text-align: left !important;
+    vertical-align: middle !important;
+  }

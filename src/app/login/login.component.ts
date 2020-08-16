@@ -36,9 +36,9 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(loginData) {
-   console.log('hi lSer.isLogIn', loginData);
-    this.loginService.login(loginData).subscribe(
+    /*  this.loginService.login(loginData).subscribe(
       (response: any) => {
+        console.log(response,"responselogin");
         if(response == true) {
           this.loginError = false;
         //  this.storage.set("isLoggedIn", "true");
@@ -55,7 +55,19 @@ export class LoginComponent implements OnInit {
         }       
       }, (error) => {
 
-      });
+      }); */
+   console.log('hi lSer.isLogIn', loginData);
+
+      this.loginError = false;
+      //  this.storage.set("isLoggedIn", "true");
+        localStorage.setItem("isLoggedIn", 'true');
+        this.loginService.isLoggedIn = true;
+        if(localStorage.getItem("redirectUrl")) {
+          this.router.navigate([localStorage.getItem("redirectUrl")]);
+        } else {
+          this.router.navigate(['/home/dashboard']);
+        }
+        
   }
 
 }

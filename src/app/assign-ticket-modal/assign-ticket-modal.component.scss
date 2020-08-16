@@ -1,0 +1,75 @@
+.modalDialog{
+    position:fixed;
+   
+    background-color: white;
+    border-radius: 6px;
+    z-index:1000;
+    top:50px;
+    width:30%;
+    
+    
+}
+::ng-deep .bootstrap-select > .btn{
+    width: 100%;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+
+    border: solid 1px #8d8d8d;
+    
+    background-color: #ffffff;
+}
+::ng-deep .bootstrap-select:focus{
+    background-color: white;
+}
+::ng-deep .open > .dropdown-toggle.btn-default{
+    background-color: white; 
+}
+.selectpicker{
+    width:100%;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+
+border: solid 1px #8d8d8d;
+
+background-color: #ffffff;
+}
+.dropdown-menu .open{
+    position: relative !important;
+    overflow: auto !important;
+}
+.modalHeader{
+   
+    border-bottom: 1px solid #979797;
+    padding: 14px;
+    font-family: Roboto;
+    font-size: 19px;
+    font-weight: 500;
+    color: #000000;
+}
+.modalBody{
+    padding:30px;
+}
+.right{float: right;}
+.btn-default{
+    border: 1px solid #ced4da;
+    color:#0062cc;
+}
+.btnstyle{
+    border: solid 1px #979797 !important;
+    border-radius: 6px;
+    box-shadow: 0 1px 7px 2px rgba(0, 0, 0, 0.17);
+    width: 75px;
+height: 31px;
+font-family: Roboto;
+font-weight: bold;
+line-height: normal;
+font-size: 13px;
+}
+.closeModalDialog{
+    float:right;
+    cursor: pointer;
+    text-align: center;
+    color: #383838;
+    font-weight: normal;
+    font-size: 17px;
+    
+
+}

@@ -1,0 +1,234 @@
+
+<label *ngIf="TroubleshootSuccess" style="color: green">Troubleshoot added succesfully</label>
+<label *ngIf="isSave" style="color: green">Updated succesfully</label>
+<label *ngIf="assignSuccess" style="color: green">Ticket assigned successfully</label>
+<div class="loader" *ngIf="isLoading"></div>
+<div  *ngIf="!isLoading">
+<div class="row">
+        <div [ngClass]="ticketDetails?.status != 'Closed' ? 'col-md-8' : 'col-md-12'" style="margin-bottom: 5px;">
+             
+            <div class="row">
+                <div (click)="goToAlertsPage()" class="col-md-6 cursor" >
+                        <i class="fa fa-arrow-circle-o-left backIcon" ></i>
+                </div>
+                <div  class="col-md-3  assignIcon cursor">
+                        <span (click)="openAssignModal()">
+                        <img class="imgPlaceholder" src="assets/images/assignticket.png">
+                       &nbsp; <label class="cursor" style="font-family: Roboto;font-size: 11px;">
+                        ASSIGN TICKET</label>
+                        </span>
+                </div>
+              <!--  <div (click)="goToAlertsPage()" class="col-md-3 cursor assignIcon" >
+                        <img class="imgPlaceholder" src="assets/images/troubleshoot.png">
+                        TROUBLESHOOT
+                </div>-->
+                <div class="col-md-3" *ngIf="ticketDetails?.status != 'Closed'">
+                        <button class="btn btn-default right" type="button"style="padding: 4px 12px;font-weight: bold;" (click)="onEdit()">Edit</button>
+                        <button class="btn btn-default left" type="button"  
+                                style="padding: 4px 12px;background-color: #428bca;color:white;float: right;font-weight: bold;"
+                                 (click)="onSave()">Save</button>     
+                </div>
+                    
+                
+            </div>
+               
+        </div>
+        <div class="col-md-4" *ngIf="ticketDetails?.status != 'Closed'"></div>
+</div>
+<!-- <form #EditForm="ngForm"></form> -->
+<div class="row" *ngIf="ticketDetails">
+        <div  [ngClass]="ticketDetails?.status != 'Closed' ? 'col-md-8' : 'col-md-12'" >
+                <div class="row tabdiv" style="height: 80px;padding: 15px;">
+                        <div class="col-md-1" style="color: #3e2d2d;font-family: Roboto;font-size: 12px; font-weight: bold;">
+                                <img class="imgPlaceholder" *ngIf="ticketDetails?.severity=='Critical'" src="assets/images/copsimages/Icons_Images/Critical_Alerts_24X24.svg">
+                                <img class="imgPlaceholder" *ngIf="ticketDetails?.severity=='Major'" src="assets/images/copsimages/Icons_Images/Major_Alerts_24X24.svg">
+                                <img class="imgPlaceholder" *ngIf="ticketDetails?.severity=='Minor'" src="assets/images/copsimages/Icons_Images/Minor_Alerts_24X24.svg">
+                                <p style="color: red" *ngIf="ticketDetails?.severity=='Critical'">Critical</p>
+                                <p style="color: orange" *ngIf="ticketDetails?.severity=='Major'" >Major</p>
+                                <p style="color: #731c1c" *ngIf="ticketDetails?.severity=='Minor'">Minor</p>
+                        </div>
+                                
+                        <div class="col-md-5">
+                        <div>
+                        <label style="letter-spacing: -0.07px;color: #333333;font-family: Roboto;font-size: 16px;font-weight: bold;">{{ticketDetails?.title}} &nbsp;#{{ticketDetails.ticketid}}</label></div></div>
+                        <div class="col-md-3 row" >
+                                <div class="col-md-4">
+                                        <img class="imgPlaceholder" src="assets/images/assignticket_grey.png">
+                                </div>
+                                <div class="col-md-8" style="padding: 0;">
+                                       
+                                        <div class="form-group">
+                                                <div >Status</div>
+                                                <div *ngIf="!isEdit"><label class="headingDiv" style="font-size: 13px">{{ticketDetails?.status}}</label></div>
+                                                       
+                                               
+                                        </div>
+                                </div>
+                                <div class="tableInput"  *ngIf="isEdit">
+                                <select  [(ngModel)]="assignedstatus" class="form-control "  style="font-size: 13px;text-align: center"
+                                        id="assignedstatus" name="assignedstatus"
+                                        (change)="isTroubleshootOpen()">
+                                                <option value="" selected disabled>Select  </option>
+                                                <option value="New">New</option>
+                                                <option value="In Progress">In Progress</option>
+                                                <option value="Closed">Closed</option>
+                                </select>
+                                </div>
+                                
+                        </div>
+                        <div class="col-md-3 row" style="float: right;border-left: 1px solid gray;">
+                                 <div class="col-md-4">
+                                        <img class="imgPlaceholder" src="assets/images/assignticket_grey.png">
+                                </div>
+                                <div class="col-md-8" style="padding: 0;">
+                                        <div>Assigned To</div>
+                                        <div style="color: #0c7ff4;font-family: Roboto;font-size: 13px;font-weight: 500;"><label>{{ticketDetails?.assignedto}}</label></div>
+                                </div>     
+                        </div>
+                </div>
+        </div>
+        <div class="col-md-4" *ngIf="ticketDetails?.status != 'Closed'">
+            <div class="tabdiv" style="height: 80px;padding:0;padding-left: 15px;">
+                <h6 style="font-size: 15px"><label style="font-family: Roboto;font-size: 18px;font-weight: 500;line-height: 1.22;  color: #000000;"> SLA Count Down</label></h6>
+               <!-- <h5 style="color: #ee0d0dbf">{{hours}}h:{{mins}}m:{{seconds}}s</h5> -->
+                <h5 style="font-family: Roboto;
+                font-size: 23px;
+                font-weight: 300;
+                color: #ff0000;
+                ">{{ticketDetails?.slacountdown}}</h5>
+            </div>
+        </div>
+</div>
+<div class="row">
+        <div class="col-md-8 " >
+                <div class="row tabdiv" >
+                        <div class="col-md-12">
+                        <label class="headingDiv">Ticket Details</label>
+                        <br>
+                        <br>
+                        <div class="row">
+                                <div class="col-md-4 lightText" >
+                                                <div style="padding: 5px;">Created Time</div>
+                                               <!-- <div>Acknowledged Time</div>padding-top: 30px;-->
+                                                <div style="padding: 5px;">Last Updated Time</div>
+                                                <div style="padding: 5px;">Assigned Group</div>
+                                </div>
+                                <div class="col-md-8 darkText">
+                                                <div style="padding: 5px;">: &nbsp; {{ticketDetails?.createdtime}}</div>
+                                                <!-- <div>: &nbsp; {{acknowledgedTime | date:'d-M-y | h:mm:ss a'}}</div>-->
+                                                <div style="padding: 5px;">: &nbsp; {{ticketDetails?.lastupdatedtime}}</div>
+                                                <div style="padding: 5px;">: &nbsp; {{ticketDetails?.assignedgroup}}</div>
+                                </div>
+                        </div>
+                        </div>
+                </div>
+                <div class="row tabdiv" >
+                        <div class="col-md-12">
+                        <label for="ticketdescription" class="headingDiv">Description</label>
+                        <div class="comntDiv"><span *ngIf="!isEdit">{{ticketDetails?.description}}</span></div>
+                        <div class="form-group" *ngIf="isEdit">
+                        <textarea type="text"  class="form-control" [(ngModel)]="ticketdescription" 
+                                id="ticketdescription" name="ticketdescription" >  </textarea>
+                        </div>
+                        </div>
+                </div>
+                <div class="row tabdiv" style="margin-bottom: 0px" *ngIf="ticketDetails?.assignedto != 'Not Assigned'">
+                        <div class="col-md-12">
+                        <label class="headingDiv">Notes</label>
+                        </div>
+                        <div class="col-md-12"  *ngIf="ticketDetails?.status != 'Closed'">
+                        <div class="loader" *ngIf="isnotesLoading"></div>
+                        
+                        <div class="form-group" *ngIf="!isnotesLoading">
+                               
+                                <textarea type="text"  class="form-control"  placeholder="Type description here..."
+                                [(ngModel)]="ticketnotes" id="ticketnotes" name="ticketnotes"></textarea>
+                        </div>
+                        <div class="row" *ngIf="!isnotesLoading">
+                                <div class="col-md-10"></div>
+                                <div class="col-md-2">
+                                        <button class="btn btn-primary right" type="button"  (click)="onSubmitNotes()"
+                                        style="width: 75px; height: 31px; background-color: #007ad5;
+                                        font-family: Roboto;font-weight: bold;font-size: 13px;">Submit</button>
+                                </div>
+                        </div>
+                        </div>
+                       
+                </div>
+                <div class="row tabdiv"  style="border-top: 1px solid #e8e2e2;padding-top: 0px;margin-bottom:0px"
+                        *ngIf="ticketDetails?.notes">
+                <div class="col-md-12"  >
+                        <div class="notesDiv row" *ngFor="let note of ticketDetails?.notes" >
+                                <div class="col-md-1">
+                                        <img class="imgPlaceholder" src="assets/images/user.png">
+                                </div>
+                                <div class="col-md-11">
+                                        <div>
+                                                <label style="font-family: Roboto;font-size: 14px;font-weight: 500;color: #3a3b3f;">{{note.createdby}}</label>&nbsp;
+                                                <span style="opacity: 0.3;font-family: Roboto;font-size: 12px;font-weight: 500;color: #000000;">{{note.notescreatedat}}</span>
+                                        </div>
+                                        <div style="opacity: 0.8;font-family: Roboto;font-size: 14px;color: #333333;">{{note.note}}</div>
+                                </div>
+                        </div>
+                </div>
+                </div>
+                <div class="row tabdiv" style="margin-top:14px;">
+                        <div class="col-md-12">
+                                <label class="headingDiv">Logs</label>
+                        </div>
+                        <br>
+                        <div class="loader" *ngIf="isLogsLoading"></div>
+                        <div class="col-md-12" *ngIf="!isLogsLoading">
+                       
+                        <label *ngIf="updateSuccess" style="color: green">Logs Updated succesfully</label>
+                        <label *ngIf="updateError" style="color: red">Error Occured while updating Logs</label>
+                        <div class="form-group" class="fileDiv">
+                                
+                               
+                                <!--    <input type="file" multiple #fileInput  id="logs"  formControlName="logs" (change)="onFileSelect(fileInput)"/>-->
+                                <input type="file"  id="logs" (change)="onFileSelect($event)"/>
+                               
+                              <!--  <span class="file-info">{{ fileInfo }}</span> -->
+                        </div>
+                        <div class="row"  >
+                                <div class="col-md-10"></div>
+                                <div class="col-md-2">
+                                        <button class="btn btn-primary right" type="button"  (click)="onSubmitLogs()"
+                                        style="width: 75px; height: 31px; background-color: #007ad5;
+                                        font-family: Roboto;font-weight: bold;font-size: 13px;" [disabled]="!fileData">Submit</button>
+                                </div>
+                        </div>
+                        <div *ngFor="let file of ticketDetails?.logs" style="padding: 3px;">
+                       <!-- <a href="{{file.content_url}}" style="color: 0088ff">{{file.filename}}</a>
+                        <br> 
+                  <a (click)="openTab('assets/demo.pdf')" style="color: 0088ff">pdf</a>
+                         <a (click)="openTab('home/pavani/Downloads/Cloud Ops_Updated_3192929.pdf')" style="color: 0088ff">cloudops pdf</a>
+                        <br>
+                        <a (click)="openTab('assets/demo.txt')" >text</a>
+                         <br>-->
+                        <a (click)="openTab(file.content_url)" style="color: 0088ff;cursor: pointer;font-size: 14px;">{{file.filename}}</a>
+                         </div>
+                       
+                        </div>
+                </div>
+                <div class="row tabdiv" *ngIf="ticketDetails?.status == 'Closed'">
+                        <div class="col-md-12">
+                        <label for="ticketdescription" class="headingDiv">Troubleshoot</label>
+                        <div><span >{{troubleshoot}}</span></div>
+                        </div>
+                </div>
+        </div>
+        <div class="col-md-4" style="padding-right: 0;">
+            <div class="tabdiv">
+               <!-- <app-root-cause-analysis-chart></app-root-cause-analysis-chart>-->
+                <app-rcachart></app-rcachart>
+            </div>
+            <div class="tabdiv">
+                <label class="headingDiv">This May Help You</label>
+            </div>
+        </div>
+</div>
+</div>
+<div class="modal-ticket-background" *ngIf="isTicketModal || isAssignModal || isTroubleshoot"></div>
+<app-troubleshoot-modal *ngIf="isTroubleshoot" (troubleshootclose)="closeTroubleshoot($event)" [ticketId]="ticketId"></app-troubleshoot-modal>
+<app-assign-ticket-modal *ngIf="isAssignModal" (assignclose)="closeAssignModal($event)" [ticketId]="modifyTicket"  [statusas]="modifyStatus"></app-assign-ticket-modal>

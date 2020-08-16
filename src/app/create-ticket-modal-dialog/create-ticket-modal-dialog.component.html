@@ -1,0 +1,85 @@
+<div class="modalDialog">
+    <div class="modalHeader">
+        Create Ticket
+        <div class="closeModalDialog" (click)="onCancel()" >X</div>
+    </div>
+    <div class="modalBody">
+        <div class="loader" *ngIf="isLoading"></div>
+            <label *ngIf="formError" style="color: red">Error Occured while creating ticket</label>
+        <form [formGroup]="CreateForm" *ngIf="!isLoading">
+            <div class="form-group">
+            <label for="tickettitle"> Ticket Title </label>
+            <input type="text" id="tickettitle" class="form-control" formControlName="tickettitle">
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group selectinput">
+                        <label for="severity"> Severity </label>
+                        <select formControlName="severity" class="form-control" >
+                            <option  value="" selected disabled>Select  </option>
+                            <option value="{{priority}}" *ngFor="let priority of severities">{{priority}}</option>
+                          
+                        </select>
+                        
+                </div>
+                <div class="col-md-6 form-group selectinput">
+                        <label for="assignedgroup"> Assigned Group </label>
+                        <select formControlName="assignedgroup" class="form-control">
+                                <option value="" selected disabled>Select  </option>
+                                <option value="cloudops">Cloudops support Team</option>
+                            </select>
+                </div>
+            </div>
+            <div class="form-group">
+                    <label for="description"> Description </label>
+                    <textarea type="text" id="description" class="form-control" formControlName="description" placeholder="Type description here..."></textarea>
+            </div>
+            <div class="form-group">
+                    <label for="logs"> Logs &nbsp;</label>
+                   
+                    <!--    <input type="file" multiple #fileInput  id="logs"  formControlName="logs" (change)="onFileSelect(fileInput)"/>-->
+                    <input type="file" multiple #fileInput  id="logs"  formControlName="logs" (change)="onFileSelect($event)"/>
+                   
+                  <!--  <span class="file-info">{{ fileInfo }}</span> -->
+            </div>
+            <!--<div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <h3>Choose File</h3>            
+                    <div class="form-group">
+                        <input type="file" name="image" (change)="fileProgress($event)" />
+                    </div>
+                    <div *ngIf="fileUploadProgress">
+                        Upload progress: {{ fileUploadProgress }}
+                    </div>
+                    <div class="image-preview mb-3" *ngIf="previewUrl">
+                    <img [src]="previewUrl" height="300" />    
+                        <a (click)="openTab(previewUrl)" style="color: 0088ff">urlsdjbsd</a> <a></a>             
+                    </div>
+         
+                    <div class="mb-3" *ngIf="uploadedFilePath">
+                        {{uploadedFilePath}}
+                    </div>
+                     
+                    <div class="form-group">
+                        <button class="btn btn-primary"  (click)="onSubmit()">Submit</button>
+                    </div>
+                </div>
+            </div>-->
+            <div class="row">
+                    <div class="col-md-8"></div>
+                    <div class="col-md-2">
+                        <button class="btn btn-default right btnstyle" type="button"  (click)="onCancel()">Cancel</button>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-primary right" type="button" 
+                        style="width: 75px; height: 31px; background-color: #007ad5;
+                                    font-family: Roboto;font-weight: bold;font-size: 13px;"
+                        [disabled]="CreateForm.invalid" (click)="onSubmit(CreateForm.value)">Submit</button>
+                    </div>
+                </div>
+               <!--  <a (click)="openTab('data:application/octet-stream;base64,'+bse64url)" style="color: 0088ff">urlsdjbsd</a> <a></a>
+                <img [src]="bse64url">-->
+        </form>
+    </div>
+
+
+</div>

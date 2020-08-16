@@ -8,7 +8,10 @@
 
 .navList {
     list-style-type: none;
-    color: #bdbdbd;
+    //color: #bdbdbd;
+    color: #767676;
+    font-weight: bold;
+    font-size: 13px;
     cursor: pointer;
 }
 .navList li {
@@ -20,7 +23,7 @@
     text-overflow: ellipsis;
 }
 .activeNavLink {
- color: #ffffff;
+  color: #007ad5;
   border-left: 4px solid  #069eda;
 }
 .navList li span {

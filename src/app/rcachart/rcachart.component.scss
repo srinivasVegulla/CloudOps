@@ -1,0 +1,44 @@
+#ChartDiv{
+position: relative;
+left:0px;
+width:100%;
+display: flex;
+justify-content: center;
+}
+.svgContainer{
+display:block;
+margin:auto;
+
+}
+.headingDiv{
+  font-family: Roboto;
+
+font-size: 15px;
+
+font-weight: 500;
+
+font-stretch: normal;
+
+font-style: normal;
+
+line-height: 1.38;
+
+letter-spacing: normal;
+
+color: #000000;
+}
+.node circle{
+ // radius:10px;
+}
+
+/*svg:not(:root) {
+
+    overflow: visible !important;
+}
+svg {
+    overflow: hidden !important;
+  }
+  
+  svg:root {
+    overflow: visible !important;
+  }*/

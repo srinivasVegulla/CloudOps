@@ -11,13 +11,26 @@ export class AlertCardsComponent implements OnInit {
   @Input() widget;
 
   alarmCount;
+  severityIssues;
+  ticketsData;
 
-  constructor(private http:CopsService, private utilityService: UtilityService) {
+  constructor(private copsService:CopsService, private utilityService: UtilityService) {
  }
 
   ngOnInit() {
-    this.http.getAlarmsCount().subscribe((response)=>{      
+    this.copsService.getAlarmsCount().subscribe((response)=>{      
       this.alarmCount = response;
+    });
+
+  /*  this.copsService.getSeverityIssues().subscribe((response)=>{      
+      
+      console.log("severityIssues",response);
+      this.severityIssues=response;
+    });*/
+    this.copsService.getTickets().subscribe((response)=>{      
+      console.log("getTickets_alertcards",response);
+      this.ticketsData=response;
+      this.severityIssues=this.ticketsData.count;
     });
     
   }

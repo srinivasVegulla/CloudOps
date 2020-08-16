@@ -1,25 +1,22 @@
  #chartdivz {
     width: 90%;
-    height: 600px;
+    height: 400px;
     margin:  0 auto;
 } 
 
-.serviceHealthWidget {
-   // background-color: #ffffff;
-   // height: 900px;
- }
  .serviceHealthHeader {
-   height: 45px;
-   padding: 10px 0 0 15px;
+   height: 40px;
+   line-height: 40px;
+   padding: 0 10px;
+ }
+ .widgetTitle {
    font-family: Roboto;
-   font-size: 30px;
-   font-weight: 300;
-   color: #069eda;
+   font-size: 18px;
+   font-weight: 600;
  }
  .shWidget {
     background-color: #ffffff;
-    height: 700px;
-   
+    height: 500px; 
  }
  .slightPadding {
     padding: 0 5px !important;

@@ -1,0 +1,129 @@
+.utilizationWidget {
+    background-color: #ffffff;
+    height: 500px;
+    padding: 0 10px;
+ }
+ .utilizationHeader {
+   height: 40px;
+   line-height: 40px;
+   padding: 0 10px;
+   font-family: Roboto;
+   font-size: 18px;
+   font-weight: 600;
+ }
+
+ .verticalSpace {
+     margin: 10px 0;
+ }
+
+ .alertBox {
+    float: left;
+   padding: 0 5px;
+    
+}
+.alertBoxContainer{
+    border-radius: 5px;
+    height: 80px;
+    border: solid 1px #979797;    
+    box-sizing: border-box;
+    padding: 0 5px;
+    div {
+        padding: 0 5px;
+    }
+}
+
+.critical{ 
+    background-color: #f94667;
+}
+.major{ 
+    background-color: #ff9200;
+}
+.minor{ 
+    background-color: #5e5e5e;
+}
+.alertBoxContainer div{
+    float: left;
+}
+.alarmCount {
+    color: #007ad5;
+    height: 70px;
+    line-height: 70px;
+    font-size: 3rem;
+    width: 100%;
+}
+
+.imgContainer {
+    color: black;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.imgPlaceholder {
+    width: 32px;
+    height: 32px;
+    margin: 5px auto;
+    display: block;
+}
+.alertImgContainer {
+    width: 32px;
+    height: 32px;
+    display: block;
+  //  margin: 0 auto;
+}
+
+.textCenter{
+  text-align: center;
+}
+
+.alarmtable {
+    width: 100%;
+    height: 320px;
+}
+.tableHeader {
+    width: 100%;
+    background-color: #e1e6eb;
+    color: #0b0e0e;
+    height: 50px;
+    
+}
+.tableHeadCell {
+    float: left;
+    padding: 0 5px; 
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.tableBody {
+    height: 270px;
+    overflow: hidden;
+}
+
+.tableBodyRow {
+    margin: 2px 0;
+    border: 1px solid #979797;
+    border-radius: 5px;
+    padding: 5px;
+    height: 50px; 
+}
+
+.tableBodyCell {
+    float: left;
+    text-align: left;
+    padding: 0 5px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    word-break: break-all;
+}
+
+.footer {
+    height: 40px;
+    line-height: 40px;
+    color: blue;
+    float: right;
+    padding: 0 10px;
+    cursor: pointer;
+}
+.cursor {
+    cursor: pointer;
+}

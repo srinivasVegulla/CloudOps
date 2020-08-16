@@ -1,23 +1,38 @@
-<h2 class="dashboardTitle">Welcome Admin</h2>
+<!-- <h2 class="dashboardTitle">Welcome Admin</h2>
 <div class="container-fluid">
     <div class="row">
         <cops-alert-cards [widget]="'dashboard'"></cops-alert-cards>
     </div>
-</div>
+</div> -->
+<div class="dashboardTitle">Dashboard</div>
 
-<div class="container-fluid verticalSpace">
-    <div class="row">
-        <div class="col-md-5">
-            <cops-regional-view></cops-regional-view>
-        </div>
-        <div class="col-md-7">
+<div class="customRow">
+    <div class="col-md-6 noPadding">
+        <app-alarms></app-alarms>
+    </div>
+    <div class="col-md-6 noPadding">
+        <cops-regional-view></cops-regional-view>
+    </div>
+    <!--  <div class="col-md-6">
             <cops-utilization-details></cops-utilization-details>
-        </div>
-    </div>
-    <div class="row verticalSpace">
-        <div class="col-md-12 noPadding">
-            <cops-service-health></cops-service-health>
-        </div>
-    </div>
+        </div> -->
 </div>
 
+<div class="customRow verticalSpace">
+    <div class="col-md-6 noPadding">
+        <div>
+            <cops-periodic-activities></cops-periodic-activities>
+        </div>
+        <div class="verticalSpace">
+            <cops-security-vulnerability></cops-security-vulnerability>
+        </div>       
+    </div>
+    <div class="col-md-6 noPadding">
+        <div>
+            <app-auto-remediation></app-auto-remediation>
+        </div>
+        <div class="verticalSpace">
+            <cops-service-health></cops-service-health>
+        </div>   
+    </div>
+</div>

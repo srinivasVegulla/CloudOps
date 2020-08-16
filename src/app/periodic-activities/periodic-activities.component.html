@@ -1,0 +1,26 @@
+<div class="utilizationWidget">
+    <div class="utilizationHeader">
+        Periodic Activities
+    </div>
+    <div>
+        <div class="verticalSpace">
+            <div class="tableHeader">
+                <div *ngFor="let column of displayColumns" class="tableHeadCell" [style.width.%]="column?.width">
+                    {{column.displayName}}
+                </div>
+            </div>
+            <div class="tableBody">
+                <div *ngFor="let row of displayRows" class="tableBodyRow">
+                    <div *ngFor="let column of displayColumns" class="tableBodyCell" [style.width.%]="column?.width">                       
+                        <div >
+                            {{getValue(row, column)}}
+                        </div>                      
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer" *ngIf="periodicActivityData?.length > 5">
+            VIEW ALL
+        </div>
+    </div>
+</div>

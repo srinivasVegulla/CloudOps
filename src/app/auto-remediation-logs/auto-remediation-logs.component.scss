@@ -1,0 +1,168 @@
+.utilizationWidget {
+    background-color: #ffffff;
+    height: calc(100vh - 98px);
+    padding: 15px;
+ }
+ .utilizationHeader {
+   height: 45px;
+   line-height: 45px;
+   font-family: Roboto;
+   font-size: 16px;
+   font-weight: 600;
+ }
+
+ .logInsightTable{
+    width: 100%;
+    height: calc(100vh - 145px);
+}
+.datatable-icon-up:before {
+   content: '@' !important;
+   height: 45px;
+   color: red;
+}
+ .dataTableHeader {
+
+    line-height: 35px;
+    color: #0b0e0e;
+    font-size:11px;
+    font-weight: bold;
+    height:80px;
+    width: 100%;
+    background-color: #E0E0E0;
+    font-family: Roboto;
+    text-align: left;
+    padding-left: 10px;
+}
+.tableInputContainer {
+   width: 90%; 
+}
+.cursor{
+    cursor: pointer;
+}
+.tableInput{
+    font-size: 13px;
+    height: 32px;
+    width: 100%;
+    border-radius: 4px;
+    //border: solid 1px #dbdbdb; 
+    text-align: left;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    border: solid 1px #ced2d4;
+    font-weight: 500;
+    letter-spacing: -0.05px;
+    color: #000000;
+    padding: 0 5px;
+}
+.formNoPadding {
+    padding: 0;
+}
+.form-control:focus /* => from bootstrap css */
+{
+    outline: none !important;
+    box-shadow: none!important;
+}
+select:focus /* => from bootstrap css */
+{
+ outline: none !important;
+ box-shadow: none!important;
+ //box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25); /* => this cause the highlight! */
+}
+ select{
+    appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 0 8px;
+  font-weight: 500;
+    letter-spacing: -0.05px;
+    color: #000000;
+}
+.wid{
+    width: 100%;
+    font-family: Roboto;
+ font-size: 12px;
+ font-weight: 500;
+ }
+ 
+ .preNxtBtn{
+  padding: 0 10px;
+ // cursor: pointer;
+  margin: 0 5px;
+  background-color: #ffffff;
+  border: none;
+  height: 30px;
+ border-radius: 4px;
+ border: solid 1px #e1e6eb;
+ font-family: Roboto;
+ font-size: 12px;
+ font-weight: 500;
+ }
+ .selectInput {
+    cursor: pointer;
+    background-color: #ffffff;
+    width: 50px;
+    border: none;
+    //padding: 5px;
+   // height: 30px;
+    line-height: 30px;
+ }
+ .optionInput {
+    cursor: pointer;
+    background-color: #ffffff;
+    padding: 5px;
+ }
+ 
+ .widgetRow {
+     margin: 15px 0;
+ }
+
+ .fontrow{
+    text-align: left;
+    vertical-align: middle !important;
+    font-size: 12px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal !important;
+    font-family: Roboto;
+    color:#000000;
+   
+}
+
+ ::ng-deep .datatable-header-inner{
+    width: 100% !important;
+}
+
+::ng-deep .datatable-header {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+::ng-deep .ngx-datatable .datatable-body .datatable-body-row >div .datatable-body-cell{
+    padding: 0 10px;
+    vertical-align: bottom !important;
+ }
+ ::ng-deep .ngx-datatable .datatable-body .datatable-body-row .datatable-body-cell > div {
+   // display: flex !important;
+    align-items: left !important;
+    vertical-align: middle !important;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+ }
+::ng-deep .datatable-body-row {
+    display: flex !important;
+    align-items: left !important;
+    vertical-align: middle !important;
+    background-color: white !important;
+    border: 1px solid #f4f8f9;
+    border-radius: 5px;
+    margin: 2px 0;
+   // overflow: auto;
+    &:hover {
+        background-color: #e1e6eb !important;
+     }
+ }
+
+ ::ng-deep .ngx-datatable.fixed-header .datatable-header .datatable-header-inner .datatable-header-cell input{
+     text-align: left !important;
+     vertical-align: middle !important;
+   }

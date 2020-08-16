@@ -1,0 +1,120 @@
+<div *ngIf="!isDetailPage">
+    <div class="utilizationHeader">List Of Tenants</div>
+  
+  <div class="widgetRow"  style="text-align: center">
+    <ngx-datatable class="listOfTenants material" id="listOfTenants" [rows]="rows" 
+        [scrollbarV]="true" [columnMode]="'flex'"
+        [headerHeight]="80" [footerHeight]="50" [rowHeight]="50" 
+    >
+  
+    <ngx-datatable-column [sortable]="true" [flexGrow]="1.3">
+        <ng-template let-column="column"  ngx-datatable-header-template headerText> 
+            <div class="dataTableHeader">TENANT
+            <div class="tableInputContainer" >
+                <input type="text" class="tableInput" (keyup)="updateFilter($event, 'tenantName')">
+            </div>     
+            </div>
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template [ngClass]="tablebody" >
+                <div class="fontrow cursor link" (click)="goToDetailPage(row)"> {{row['tenantName']}}</div>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [sortable]="true" [flexGrow]="1">
+      <ng-template let-column="column"  ngx-datatable-header-template headerText> 
+          <div class="dataTableHeader">REGION
+          <div class="tableInputContainer" >
+                  <div class="form-group tableInput formNoPadding">
+                          <select class="form-control" style="font-size: 13px;text-align: center" id="reset" (change)="updateFilter($event, 'region')">
+                              <option value="" selected >All</option>
+                              <option value="ERROR" >ERROR</option>
+                              <option value="WARNING"  >WARNING</option>
+                          </select>  
+                  </div>
+          </div>  
+      </div>   
+      </ng-template>
+      <ng-template let-row="row" ngx-datatable-cell-template>
+              <span class="fontrow"> {{row.region}}</span>
+      </ng-template>
+  </ngx-datatable-column>
+    <ngx-datatable-column [sortable]="true" [flexGrow]="1.3">
+        <ng-template let-column="column" ngx-datatable-header-template headerText > 
+            <div class="dataTableHeader">CLUSTER
+            <div class="tableInputContainer" >
+                <input type="text"  class="tableInput" (keyup)="updateFilter($event, 'cluster')">
+            </div> 
+            </div>    
+        </ng-template>
+        <ng-template let-row="row"  ngx-datatable-cell-template headerText>
+                <span class="fontrow" id="titlediv"> {{row.cluster}}</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [sortable]="true"  [flexGrow]="1">
+        <ng-template let-column="column" ngx-datatable-header-template> 
+            <div class="dataTableHeader">MAINTAINED BY
+              <div class="tableInputContainer" >
+                <input type="text"  class="tableInput" (keyup)="updateFilter($event,'mBy')">
+            </div> 
+            </div>      
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+        <div class="fontrow">{{row.mBy}}</div>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [sortable]="true"  [flexGrow]="1">
+        <ng-template let-column="column" ngx-datatable-header-template headerText> 
+            <div class="dataTableHeader">BILL AMOUNT
+              <div class="tableInputContainer" >
+                <input type="text"  class="tableInput" (keyup)="updateFilter($event,'bAmount')">
+            </div> 
+            </div>      
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+        <div  class="fontrow">{{row.bAmount}}</div>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [sortable]="true"  [flexGrow]="1">
+        <ng-template let-column="column" ngx-datatable-header-template headerText> 
+            <div class="dataTableHeader">PENALITY
+              <div class="tableInputContainer" >
+                <input type="text"  class="tableInput" (keyup)="updateFilter($event,'penality')">
+            </div> 
+            </div>      
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+        <div  class="fontrow">{{row.penality}}</div>
+        </ng-template>
+    </ngx-datatable-column>
+  
+    <ngx-datatable-footer>
+        <ng-template ngx-datatable-footer-template>
+            <div class="row wid">
+            <div class="col-md-4"></div>
+            <div class="col-md-3 seinput" *ngIf="filteredData.length != 0">
+                Rows per page <select class=" selectInput" (change)="updateRecPerPage($event.target.value)" value={{rowsPerPage}}>
+                <option class="optionInput" *ngFor="let x of recperpage" value="{{x}}">{{x}}</option>
+                </select>
+            </div>
+            <div class="col-md-2" *ngIf="filteredData.length != 0"> {{((currentPage-1)*this.rowsPerPage)+1}} - <span *ngIf="currentPage != totalPages">{{this.currentPage*this.rowsPerPage}}</span>
+                <span *ngIf="currentPage == totalPages">{{filteredData.length}}</span> of {{filteredData.length}}
+            </div>
+            <div class="col-md-3" *ngIf="filteredData.length != 0">
+                <button class="preNxtBtn"  [ngStyle]="{'color':currentPage == 1 ? 'rgba(118, 118, 118, 0.7)' : '#007ad5'}" [ngStyle]="{'cursor':currentPage == 1 ? 'default' : 'pointer'}" 
+                    [disabled]="currentPage == 1" (click) = previous()>PREVIOUS</button>
+                <button class="preNxtBtn"  [ngStyle]="{'color':currentPage == totalPages ? 'rgba(118, 118, 118, 0.7)' : '#007ad5'}" [ngStyle]="{'cursor':currentPage == totalPages ? 'default' : 'pointer'}"
+                    [disabled]="currentPage == totalPages" (click)=next()>NEXT</button>
+            </div>
+            </div>
+             
+            
+        </ng-template>
+    </ngx-datatable-footer>
+  
+    </ngx-datatable>
+  </div>
+  
+  </div>
+
+  <div *ngIf="isDetailPage">
+    <cops-tenant-detail-page [tenant]="selectedTenant" (closeDetailPage)="closedDetailPage($event)"></cops-tenant-detail-page>
+  </div>

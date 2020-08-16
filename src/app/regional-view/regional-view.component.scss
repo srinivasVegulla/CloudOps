@@ -1,12 +1,111 @@
 .utilizationWidget {
-    background-color: #ffffff;
-    height: 900px;
- }
- .utilizationHeader {
-   height: 45px;
-   padding: 10px 0 0 15px;
-   font-family: Roboto;
-   font-size: 30px;
-   font-weight: 300;
-   color: #069eda;
- }
+  background-color: #ffffff;
+  height: 500px;
+  padding: 0 15px;
+}
+.utilizationHeader {
+  height: 40px;
+  line-height: 40px;
+  padding: 0 10px;
+ 
+}
+.widgetTitle {
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 600;
+}
+.verticalSpace {
+  margin: 10px 0;
+}
+
+.textCenter{
+text-align: center;
+}
+
+.tableHeader {
+ width: 100%;
+ background-color: #e1e6eb;
+ color: #0b0e0e;
+ height: 40px;
+ 
+}
+.tableHeadCell {
+ padding: 0 5px;
+ float: left;
+ position: relative;
+ top: 50%;
+ transform: translateY(-50%);
+}
+.tableBody {
+ height: 100px;
+ overflow: hidden;
+}
+
+.tableBodyRow {
+ margin: 2px 0;
+ border: 1px solid #979797;
+ border-radius: 5px;
+ padding: 0 5px;
+ height: 30px; 
+}
+
+.tableBodyRow:nth-child(even) {
+ background-color: #e1e6eb;
+}
+
+.tableBodyCell {
+ float: left;
+ text-align: left;
+ padding: 0 5px;
+ position: relative;
+ top: 50%;
+ transform: translateY(-50%); 
+}
+
+.footer {
+ height: 40px;
+ line-height: 40px;
+ color: blue;
+ float: right;
+ padding: 0 10px;
+}
+
+.selectButton {
+  background-color: #ffffff;
+  border: none;
+  border-bottom: 1px solid black;
+
+  :focus {
+    outline: none !important;
+  }
+}
+
+
+.drpDwnBtn {
+  background-color: #ffffff;
+  height: 30px;
+  line-height: 30px;
+  width: 100%;
+  text-align: left;
+  border-radius: 15px;
+  cursor: pointer;
+}
+.openDropdown {
+  display: block !important;
+}
+.dropDownItem {
+  padding: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.dropdown-menu {
+  width: 100%;
+}
+.dropdown-toggle::after {
+  float: right;
+  position: relative;
+  top: 7px;
+}
+.inputHeight {
+  font-size: 16px;
+}

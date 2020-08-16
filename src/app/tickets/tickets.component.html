@@ -1,0 +1,189 @@
+<div *ngIf="!isalertSelected">
+    <div class="cardsContainer">
+        <cops-alert-cards [widget]="'alerts'"></cops-alert-cards>
+    </div>   
+   
+    <div class="tabsContainer">
+        <ul class="ticHistUListItems">
+            <li [ngClass]="{'ticActive': activeTab == 'tickets'}" (click)="setTableTab('tickets')">TICKETS ({{ticketsData?.tickets?.length}})</li>
+            <li [ngClass]="{'ticActive': activeTab == 'history'}" (click)="setTableTab('history')">HISTORY</li>
+            <li class="pull-right createTic" (click)="openModal()">
+                CREATE TICKET
+            </li>
+        </ul>
+    </div>
+    <label *ngIf="createSuccess" style="color: green">Ticket created successfully</label>
+    <label *ngIf="assignSuccess" style="color: green">Ticket assigned successfully</label>
+    <label *ngIf="TroubleshootSuccess" style="color: green">Troubleshoot added successfully</label>
+   <!-- <div class="fontrow cursor" style="color:#0062cc" (click)="goToAlertDetailsPage(427)" routerLink="alertdetails" >  427</div> -->
+    <div class="widgetRow"  style="text-align: center">
+        <ngx-datatable class="logInsightTable material" id="mainNgxTable" [rows]="rows" 
+            [scrollbarH]="false" [scrollbarV]="true"  [limit]=6 [count]=6 [columnMode]="'force'"
+            [headerHeight]="90" [footerHeight]="50" [rowHeight]="50" 
+        >
+        <ngx-datatable-column [sortable]="true" [minWidth]="severitywidth" [maxWidth]="severitywidth"
+            cellClass="d-flex align-items-center" [canAutoResize]="true" [draggable]="false" [resizeable]="true">
+            <ng-template let-column="column"  ngx-datatable-header-template> 
+                <div class="dataTableHeader">
+                    SEVERITY
+                    <div class="tableInputContainer" >
+                            <div class="form-group tableInput">
+                                    <select class="form-control selectafter" style="font-size: 13px;text-align: center" id="reset" (change)="updateFilter($event, 'severity')">
+                                            <option value="" selected >All</option>
+                                            <option value="critical">Critical</option>
+                                            <option value="major">Major</option>
+                                            <option value="minor">Minor</option>
+                                        </select>  
+                                   <!-- <select class="form-control" style="font-size: 13px;text-align: center" id="reset" (change)="updateFilter($event, 'severity')">
+                                        <option value="" selected >All</option>
+                                        <option value="critical">Critical</option>
+                                        <option value="major">Major</option>
+                                        <option value="minor">Minor</option>
+                                    </select>  -->
+                            </div>
+                        <!--<input type="text" class="tableInput" (keyup)="updateFilter($event, 'host', 'name')">-->
+                    </div>   
+                </div>
+            </ng-template>
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                
+                <img class="alertImgContainer" src="assets/images/Critical.png" *ngIf="row.severity=='Critical'">
+                <img class="alertImgContainer" src="assets/images/major.png" *ngIf="row.severity=='Major'">
+                <img class="alertImgContainer" src="assets/images/Minor.png" *ngIf="row.severity=='Minor'">
+                          
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [sortable]="true" [minWidth]="90" [maxWidth]="90">
+            <ng-template let-column="column"  ngx-datatable-header-template headerText> 
+                <div class="dataTableHeader">TICKET ID
+                <div class="tableInputContainer" >
+                    <input type="text" class="tableInput" (keyup)="updateFilter($event, 'ticketid')">
+                </div>     
+                </div>
+            </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template [ngClass]="tablebody" >
+                    <div class="fontrow cursor" style="color:#007ad5" (click)="goToTicketstDetailsPage(row.ticketid,row.status,row.severity)" routerLink="alertdetails" >  {{row.ticketid}}</div>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [sortable]="true" [minWidth]="titlewidth" [maxWidth]="titlewidth">
+            <ng-template let-column="column" ngx-datatable-header-template headerText > 
+                <div class="dataTableHeader">TITLE
+                <div class="tableInputContainer" >
+                    <input type="text"  class="tableInput" (keyup)="updateFilter($event, 'title')">
+                </div> 
+                </div>    
+            </ng-template>
+            <ng-template let-row="row"  ngx-datatable-cell-template headerText>
+                    <div class="fontrow" id="titlediv"> {{row.title}}</div>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [sortable]="true" prop="loglevel" [minWidth]="dateandtimewidth" [maxWidth]="dateandtimewidth">
+            <ng-template let-column="column" ngx-datatable-header-template> 
+                <div class="dataTableHeader">DATE & TIME</div>      
+            </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+            <span class="fontrow">{{row.dateandtime}}</span>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [sortable]="true" prop="loglevel" [minWidth]="70" [maxWidth]="70" *ngIf="activeTab == 'tickets'">
+            <ng-template let-column="column" ngx-datatable-header-template headerText> 
+                <div class="dataTableHeader">SLA</div>      
+            </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+            <span  class="fontrow">{{row.sla}}</span>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [sortable]="true" prop="loglevel" [minWidth]="110" [maxWidth]="110" *ngIf="activeTab == 'tickets'">
+            <ng-template let-column="column"  ngx-datatable-header-template headerText> 
+                <div class="dataTableHeader">TIME LEFT</div>      
+            </ng-template>
+            <ng-template let-row="row"  ngx-datatable-cell-template>
+            <span class="fontrow" [ngClass]="{'timeActive': row.approachingsla!= 0}"> {{row.timeleft}}</span>
+            </ng-template>
+        </ngx-datatable-column>
+        
+        <ngx-datatable-column [sortable]="true" [minWidth]="123" [maxWidth]="123">
+            <ng-template let-column="column"  ngx-datatable-header-template headerText> 
+                <div class="dataTableHeader">STATUS
+                <div class="tableInputContainer" >
+                        <div class="form-group tableInput">
+                                <select class="form-control" style="font-size: 13px;text-align: center" id="reset" (change)="updateFilter($event, 'status')">
+                                    <option value="" selected >All</option>
+                                    <option value="New" *ngIf="activeTab == 'tickets'">New</option>
+                                    <option value="In Progress"  *ngIf="activeTab == 'tickets'">In Progress</option>
+                                    <option value="Closed"  *ngIf="activeTab == 'history'">Closed</option>
+                                </select>  
+                        </div>
+                   <!--<input type="text" class="tableInput" (keyup)="updateFilter($event, 'host', 'name')">-->
+                </div>  
+            </div>   
+            </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                    <div class="fontrow"> {{row.status}}</div>
+            </ng-template>
+        </ngx-datatable-column>
+    
+        <ngx-datatable-column [sortable]="true" prop="service" [minWidth]="personassignedwidth" [maxWidth]="personassignedwidth">
+            <ng-template let-column="column" ngx-datatable-header-template headerText> 
+                <div class="dataTableHeader">PERSON ASSIGNED
+                <div class="tableInputContainer" >
+                    <input type="text" class="tableInput" (keyup)="updateFilter($event, 'personassigned')">
+                </div> 
+                </div> 
+            </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                    <div class="fontrow">   {{row.personassigned}}</div>
+            </ng-template>
+        </ngx-datatable-column>
+    
+            <ngx-datatable-column [sortable]="true" [minWidth]="130" [maxWidth]="130" *ngIf="activeTab == 'tickets'">
+                <ng-template let-column="column" ngx-datatable-header-template headerText> 
+                    <div class="dataTableHeader">ACTIONS</div>      
+                </ng-template>
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    <div class="fontrow" style="align-content: center" >
+                       <!-- <button [disabled]="row.status=='New'" style="background: white;border:none" (click)="openAssignModal(row.ticketid,row.personassigned,row.status)">
+                            <img class="imgPlaceholder" src="assets/images/assignticket.png"  >
+                        </button> -->
+                            <img class="imgPlaceholder" src="assets/images/assignticket.png" (click)="openAssignModal(row.ticketid,row.personassigned,row.status)" >
+                            &nbsp;
+                           <!-- <img class="imgPlaceholder" src="assets/images/troubleshoot.png" (click)="openTroubleshoot(row.ticketid)">-->
+                      
+                    </div>
+                </ng-template>
+        </ngx-datatable-column>
+    
+        <ngx-datatable-footer>
+            <ng-template ngx-datatable-footer-template>
+                <div class="row wid">
+                <div class="col-md-4"></div>
+                <div class="col-md-3 seinput" *ngIf="filteredData.length != 0">
+                    Rows per page <select class=" selectInput" (change)="updateRecPerPage($event.target.value)" value={{rowsPerPage}}>
+                    <option class="optionInput" *ngFor="let x of recperpage" value="{{x}}">{{x}}</option>
+                    </select>
+                </div>
+                <div class="col-md-2" *ngIf="filteredData.length != 0"> {{((currentPage-1)*this.rowsPerPage)+1}} - <span *ngIf="currentPage != totalPages">{{this.currentPage*this.rowsPerPage}}</span>
+                    <span *ngIf="currentPage == totalPages">{{filteredData.length}}</span> of {{filteredData.length}}
+                </div>
+                <div class="col-md-3" *ngIf="filteredData.length != 0">
+                    <button class="preNxtBtn"  [ngStyle]="{'color':currentPage == 1 ? 'rgba(118, 118, 118, 0.7)' : '#007ad5'}" [ngStyle]="{'cursor':currentPage == 1 ? 'default' : 'pointer'}" 
+                        [disabled]="currentPage == 1" (click) = previous()>PREVIOUS</button>
+                    <button class="preNxtBtn"  [ngStyle]="{'color':currentPage == totalPages ? 'rgba(118, 118, 118, 0.7)' : '#007ad5'}" [ngStyle]="{'cursor':currentPage == totalPages ? 'default' : 'pointer'}"
+                        [disabled]="currentPage == totalPages" (click)=next()>NEXT</button>
+                </div>
+                </div>
+                 
+                
+            </ng-template>
+        </ngx-datatable-footer>
+    
+        </ngx-datatable>
+    </div>
+</div>
+<div *ngIf="isalertSelected">
+    <app-ticket-details-page></app-ticket-details-page>
+</div>
+<div class="modal-ticket-background" *ngIf="isTicketModal || isAssignModal || isTroubleshoot"></div>
+<app-create-ticket-modal-dialog *ngIf="isTicketModal" (modalclose)="closeModal($event)" [ticketId]="modifyTicket"></app-create-ticket-modal-dialog>
+<app-assign-ticket-modal *ngIf="isAssignModal" (assignclose)="closeAssignModal($event)" [ticketId]="modifyTicket"  [statusas]="modifyStatus" [assignee]="modifyAssignee"></app-assign-ticket-modal>
+<app-troubleshoot-modal *ngIf="isTroubleshoot" (troubleshootclose)="closeTroubleshoot($event)" [ticketId]="modifyTicket"></app-troubleshoot-modal>

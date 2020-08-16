@@ -17,7 +17,7 @@ export class LoginService {
 
   login(loginData) {
 
-    return this.http.post('http://10.138.77.193:11111/ldapauth', loginData)
+    return this.http.post('http://10.138.77.193:12355/ldapauth', loginData)
         .pipe(map((res) => {
            return res;
         }));

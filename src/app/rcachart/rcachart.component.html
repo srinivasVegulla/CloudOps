@@ -1,0 +1,16 @@
+<div #opencloseDiv id="opencloseDiv"
+[ngStyle]="isFullscreen ? {'padding' : '40px','text-align' : 'center'} : {'padding' : '0','text-align' : 'left'} "
+
+>
+<div class="row">
+    <div class="col-md-10"><label class="headingDiv">Root Cause Analysis</label></div>
+    <div class="col-md-2" *ngIf="!isFullscreen">
+    <button (click)="toggleFullscreen()" style="float: right;background-color:white;border:none"><i class="fa fa-1x fa-arrows-alt" style="size:40px"></i></button>
+    </div>
+    <div class="col-md-2" *ngIf="isFullscreen">
+            <button (click)="toggleFullscreen()" style="float: right;background-color:white;border:none"><a>close</a></button>
+    </div>
+</div>
+<div #ChartDiv id="ChartDiv"></div>
+</div>
+<!--fa-expand fa-window maximize-->

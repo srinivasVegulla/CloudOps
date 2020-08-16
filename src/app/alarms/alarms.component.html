@@ -1,0 +1,55 @@
+<div class="utilizationWidget">
+    <div class="utilizationHeader">Issues</div>
+    <div>
+        <!--  Cards -->
+        <div class="customRow">
+            <div class="alertBox col-md-4" *ngFor="let card of alaramCountObject">
+                <div class="col-md-12 alertBoxContainer">
+                    <div class="col-md-6 imgContainer">
+                        <img class="imgPlaceholder"
+                            src="{{card?.imagePath}}">
+                        <p class="textCenter">{{card?.type}}</p>
+                    </div>
+                    <div class="col-md-6 textCenter">
+                        <div class="alarmCount">{{card?.count}}</div>
+                    </div>
+                </div>
+            </div>          
+        </div>
+        <div class="alarmtable verticalSpace">
+            <div class="tableHeader">
+                <div *ngFor ="let column of displayColumns" class="tableHeadCell" [style.width.%]="column?.width">                 
+                    {{column.displayName}} 
+                </div>
+            </div>
+            <div class="tableBody">
+                <div *ngFor ="let row of displayRows" class="tableBodyRow">
+                    <div *ngFor ="let column of displayColumns" class="tableBodyCell" [style.width.%]="column?.width">
+                        
+                        <div *ngIf="column['key'] == 'timeleft'" style="color: red;">
+                            {{row?.timeleft}}
+                        </div>
+                        <div *ngIf="column['key'] == 'description'">
+                            {{row?.description}}
+                        </div>
+                        <div *ngIf="column['key'] == 'ticketid'" style="color: blue;" (click)="goToTicketstDetailsPage(row)" class="cursor">
+                            {{row?.ticketid}}
+                        </div>
+                        <div *ngIf="column['key'] == 'severity'">
+                            <img class="alertImgContainer" src="assets/images/Critical.png" *ngIf="row.severity=='Critical'">
+                            <img class="alertImgContainer" src="assets/images/major.png" *ngIf="row.severity=='Major'">
+                            <img class="alertImgContainer" src="assets/images/Minor.png" *ngIf="row.severity=='Minor'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer" *ngIf="alaramsData?.length > 5" (click)="goToTicketsPage()">
+            VIEW ALL
+        </div>
+
+       
+
+
+    </div>
+</div>

@@ -109,40 +109,37 @@
 <div class="alertsContainer" *ngIf="widget == 'alerts'">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-4 outlineAlertContainer">
-                <div class="col-md-12 critical outLineAlerts">
+            <div class=" col-md-3" *ngFor="let card of severityIssues">
+            <div class="outlineAlertContainer" >
+                <div class="outLineAlerts" >
                     <div class="row tableRow">
                         <div class="tableCell outlineImage">
-                            <img class="alertImgContainer" src="assets/images/copsimages/Icons_Images/Critical_Alerts_24X24.svg">
-                            Critical
+                            <img class="alertImgContainer" src="assets/images/Critical.png" *ngIf="card.severity=='Critical'">
+                            <img class="alertImgContainer" src="assets/images/major.png" *ngIf="card.severity=='Major'">
+                            <img class="alertImgContainer" src="assets/images/Minor.png" *ngIf="card.severity=='Minor'">
+                            <span class="latoDiv">{{this.card?.severity}}</span>
                         </div>
-                        <div class="tableCell outliineCrossed">2/5 <div>SLA crossed</div></div>
-                        <div class="tableCell outlineCount">{{this.alarmCount?.critical}}</div>
+                        <div class="tableCell outlineCount">{{this.card?.count}}</div>
                     </div>                   
-                </div>               
-            </div>
-            <div class="col-md-4 outlineAlertContainer">
-                <div class="col-md-12 major outLineAlerts">
-                    <div class="row tableRow">
-                        <div class="tableCell outlineImage">
-                            <img class="alertImgContainer" src="assets/images/copsimages/Icons_Images/Major_Alerts_24X24.svg"> Major
-                        </div>
-                        <div class="tableCell outliineCrossed">2/5 <div>SLA crossed</div></div>
-                        <div class="tableCell outlineCount">{{this.alarmCount?.major}}</div>
-                    </div>                   
-                </div>               
-            </div>
-            <div class="col-md-4 outlineAlertContainer">
-                <div class="col-md-12 minor outLineAlerts">
-                    <div class="row tableRow">
-                        <div class="tableCell outlineImage">
-                            <img class="alertImgContainer" src="assets/images/copsimages/Icons_Images/Minor_Alerts_24X24.svg"> Minor
-                        </div>
-                        <div class="tableCell outliineCrossed">2/5 <div>SLA crossed</div></div>
-                        <div class="tableCell outlineCount">{{this.alarmCount?.minor}}</div>
-                    </div>                   
-                </div>               
-            </div>
+                </div>
+                <div class="approachingSLA">
+                    <div class="pull-left">
+                        Approaching SLA
+                    </div>
+                    <div class="pull-right">
+                        {{this.card?.approachingsla}}
+                    </div>
+                </div> 
+                <div class="approachingSLA" style=" border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">
+                    <div class="pull-left">
+                        SLA Breached
+                    </div>
+                    <div class="pull-right">
+                        {{this.card?.slabreached}}
+                    </div>
+                </div>                           
+            </div>   
+            </div>       
         </div>
     </div>
 </div>

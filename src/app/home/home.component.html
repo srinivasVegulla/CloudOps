@@ -1,10 +1,10 @@
 <div class="systemBar">
-    <div class="sysBarTitle CLOUD-Ops col-md-2">
-        <img src="assets/images/copsimages/Icons_Images/CloudOps_Logo.svg">
+    <div class="sysBarTitle CLOUD-Ops col-md-2 cursor" (click)="goToDashboardPage()">
+        <img src="assets/images/cloudops_logo.png">
     </div>
     <div class="sysBarContent col-md-10">
-       <div class="hamburger">
-           <div class="hamburgerImage" (click)="toggleSideNav()">
+       <div class="hamburger" *ngIf="!isalertSelected">
+           <div class="hamburgerImage cursor" (click)="toggleSideNav()">
              <img src="assets/images/copsimages/Icons_Images/Hamburger_menu_24X24.svg">
            </div>  
         </div>
@@ -20,11 +20,11 @@
 </div>
 
 <div class="mainContent">
-    <div class="nav" [ngClass]="{'col-md-2': !isSideNavOpen, 'navIcons': isSideNavOpen}">  
+    <div *ngIf="!isalertSelected" class="nav" [ngClass]="{'col-md-2': !isSideNavOpen, 'navIcons': isSideNavOpen}">  
         <cops-side-navigation [isSideNavOpen]="isSideNavOpen"></cops-side-navigation>  
     </div>
     
-    <div class="navContainer" [ngClass]="{'col-md-10': !isSideNavOpen, 'navIconMain': isSideNavOpen}">
+    <div class="navContainer" [ngClass]="{'col-md-12': (!isSideNavOpen && isalertSelected), 'col-md-10': (!isSideNavOpen && !isalertSelected), 'navIconMain': (isSideNavOpen && !isalertSelected)}">
         <router-outlet></router-outlet>
     </div>
 </div>

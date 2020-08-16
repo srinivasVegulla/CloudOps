@@ -1,0 +1,13 @@
+
+<div class="chartHeader">
+    <div class="widgetTitle pull-left">TOPOLOGY</div>
+    <div class="pull-right listCointainer" *ngFor="let item of menuListObjects">
+        <div class="imageDiv circle" [ngClass]="getColor(item)">
+            <img class="imgPlaceholder " src="{{item?.imagePath}}">
+        </div>
+        <div class="imageName">{{item?.displayName}}</div>
+    </div>
+</div>
+
+<div class="loader" *ngIf="isLoading"></div>
+<div id="chartdiv1"></div>

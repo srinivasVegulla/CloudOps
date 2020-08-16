@@ -1,0 +1,104 @@
+<div>
+    <div class="utilizationHeader">Auto Remediation</div>
+  
+  <div class="widgetRow"  style="text-align: center">
+    <ngx-datatable class="logInsightTable material" id="mainNgxTableLigInsights" [rows]="rows" 
+        [scrollbarV]="true" [columnMode]="'flex'"
+        [headerHeight]="80" [footerHeight]="50" [rowHeight]="50" 
+    >
+  
+    <ngx-datatable-column [sortable]="true" [flexGrow]="1">
+        <ng-template let-column="column"  ngx-datatable-header-template headerText> 
+            <div class="dataTableHeader">TIMESTAMP
+            <div class="tableInputContainer" >
+                <input type="text" class="tableInput" (keyup)="updateFilter($event, 'date')">
+            </div>     
+            </div>
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template [ngClass]="tablebody" >
+                <div class="fontrow">  {{row['@timestamp'] | date : 'dd-MM-yyyy | hh:mm:ss aa'}}</div>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [sortable]="true" [flexGrow]="0.8">
+      <ng-template let-column="column"  ngx-datatable-header-template headerText> 
+          <div class="dataTableHeader">SERVICE
+          <div class="tableInputContainer" >
+                  <div class="form-group tableInput formNoPadding">
+                          <select class="form-control" style="font-size: 13px;text-align: center" id="reset" (change)="updateFilter($event, 'service')">
+                              <option value="" selected >All</option>
+                              <option value="ERROR" >ERROR</option>
+                              <option value="WARNING"  >WARNING</option>
+                          </select>  
+                  </div>
+          </div>  
+      </div>   
+      </ng-template>
+      <ng-template let-row="row" ngx-datatable-cell-template>
+              <div class="fontrow"> {{row.service}}</div>
+      </ng-template>
+  </ngx-datatable-column>
+    <!-- <ngx-datatable-column [sortable]="true" [flexGrow]="0.8">
+        <ng-template let-column="column" ngx-datatable-header-template headerText > 
+            <div class="dataTableHeader">HOST
+            <div class="tableInputContainer" >
+                <input type="text"  class="tableInput" (keyup)="updateFilter($event, 'host', 'name')">
+            </div> 
+            </div>    
+        </ng-template>
+        <ng-template let-row="row"  ngx-datatable-cell-template headerText>
+                <div class="fontrow" id="titlediv"> {{row.host.name}}</div>
+        </ng-template>
+    </ngx-datatable-column> -->
+    <ngx-datatable-column [sortable]="true" prop="service" [flexGrow]="1.5">
+        <ng-template let-column="column" ngx-datatable-header-template> 
+            <div class="dataTableHeader">ALERT DESCRIPTION
+              <div class="tableInputContainer" >
+                <input type="text"  class="tableInput" (keyup)="updateFilter($event,'logmessage')">
+            </div> 
+            </div>      
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+        <div class="fontrow">{{row.logmessage}}</div>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [sortable]="true" prop="message" [flexGrow]="1">
+        <ng-template let-column="column" ngx-datatable-header-template headerText> 
+            <div class="dataTableHeader">LOG LEVEL
+              <div class="tableInputContainer" >
+                <input type="text"  class="tableInput" (keyup)="updateFilter($event,'loglevel')">
+            </div> 
+            </div>      
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+        <div  class="fontrow">{{row.loglevel}}</div>
+        </ng-template>
+    </ngx-datatable-column>
+  
+    <ngx-datatable-footer>
+        <ng-template ngx-datatable-footer-template>
+            <div class="row wid">
+            <div class="col-md-4"></div>
+            <div class="col-md-3 seinput" *ngIf="filteredData.length != 0">
+                Rows per page <select class=" selectInput" (change)="updateRecPerPage($event.target.value)" value={{rowsPerPage}}>
+                <option class="optionInput" *ngFor="let x of recperpage" value="{{x}}">{{x}}</option>
+                </select>
+            </div>
+            <div class="col-md-2" *ngIf="filteredData.length != 0"> {{((currentPage-1)*this.rowsPerPage)+1}} - <span *ngIf="currentPage != totalPages">{{this.currentPage*this.rowsPerPage}}</span>
+                <span *ngIf="currentPage == totalPages">{{filteredData.length}}</span> of {{filteredData.length}}
+            </div>
+            <div class="col-md-3" *ngIf="filteredData.length != 0">
+                <button class="preNxtBtn"  [ngStyle]="{'color':currentPage == 1 ? 'rgba(118, 118, 118, 0.7)' : '#007ad5'}" [ngStyle]="{'cursor':currentPage == 1 ? 'default' : 'pointer'}" 
+                    [disabled]="currentPage == 1" (click) = previous()>PREVIOUS</button>
+                <button class="preNxtBtn"  [ngStyle]="{'color':currentPage == totalPages ? 'rgba(118, 118, 118, 0.7)' : '#007ad5'}" [ngStyle]="{'cursor':currentPage == totalPages ? 'default' : 'pointer'}"
+                    [disabled]="currentPage == totalPages" (click)=next()>NEXT</button>
+            </div>
+            </div>
+             
+            
+        </ng-template>
+    </ngx-datatable-footer>
+  
+    </ngx-datatable>
+  </div>
+  
+  </div>

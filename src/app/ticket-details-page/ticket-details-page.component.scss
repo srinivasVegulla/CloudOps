@@ -1,0 +1,78 @@
+.nav{
+    float: left;
+   // background-color: #2a3847;
+   background-color: white;
+    height: calc(100vh - 68px);
+    overflow-y: auto; 
+}
+.contentContainer {
+    float: left;
+    height: calc(100vh - 68px);
+    overflow-y: auto;
+    padding:40px;
+    font-size: 13px;
+    padding-top: 20px;
+}
+.headingDiv{
+    font-family: Roboto;
+
+font-size: 15px;
+
+font-weight: 500;
+
+font-stretch: normal;
+
+font-style: normal;
+
+line-height: 1.38;
+
+letter-spacing: normal;
+
+color: #000000;
+}
+.cursor{
+    cursor: pointer;
+}
+.ticketDiv{
+    width: 190px;
+    padding: 15px;
+    cursor: pointer;
+}
+.ticketActive{
+    //background-color: #dfdfe3;
+    background-color: #086cd2;
+    //color: white !important;
+}
+.searchbox{
+    padding: 15px; 
+    padding-left: 28px;
+}
+.searchInput{
+    width: 175px;
+    padding: 0 8px;
+}
+.searchIcon{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    color: #767676;
+}
+.detailDiv{
+    padding: 10px;
+    border:1px solid #ccc3c3;
+    font-size:10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+.ticketcreated{
+    //font-weight:bold;
+    font-family: Roboto;
+
+    font-size: 12px;
+  
+    font-weight: 500;
+   // color: #333333;
+}
+.ticketdesc{
+    color: #767676;;
+}

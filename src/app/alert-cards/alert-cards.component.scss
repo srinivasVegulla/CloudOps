@@ -83,15 +83,40 @@
 }
 
 .outLineAlerts {
-    border-radius: 5px;
     height: 70px;
-    border: solid 1px #979797;    
     box-sizing: border-box;
     display: table;
-    //padding: 0 5px;
+    padding: 0 5px;
 }
 .outlineAlertContainer {
-    padding: 0 5px;
+        width: 195px;
+        height: 113px;
+        border-radius: 6px;
+        box-shadow: 0 4px 9px 0 rgba(0, 0, 0, 0.02);
+        border: solid 1px #dfe6e8;
+        background-color: #ffffff;
+        max-width: 200px;
+        font-size: 13px;
+    //border: solid 1px #979797;
+   // margin-right: 15px;
+}
+.approachingSLA {
+        width: 193px;
+        height: 25px;
+       // border-radius: 6px;
+        background-color: #7a8188;
+        padding: 0 10px;
+        max-width: 199px;
+   //line-height: 30px;
+        color: #ffffff;
+        font-family: Lato;
+        font-weight: 500;
+}
+.latoDiv{
+    font-family: Lato;
+   // font-size: 16px;
+    font-weight: bold;
+    color: #333333;
 }
 .tableRow {
     display: table-row;
@@ -100,17 +125,22 @@
 .tableCell {
     display: table-cell;
     vertical-align: middle;
-    width: 33.3%;
+    width: 90px;
     height: 70px;
     text-align: center;
 }
 .outlineCount{
-    font-size: 3rem;
+    font-family: Roboto;    
+    font-size: 39px;
+    line-height: 0.79;
+    //font-size: 3rem;
     text-align: right;
+    color: #007ad5;
 }
 .outlineImage {
-    text-align: left;
+    text-align: center;
     color: #ffffff;
+    color: #000000;
 }
 .outliineCrossed {
     text-align: center;
@@ -129,4 +159,6 @@
 .alertImgContainer {
     width: 32px;
     height: 32px;
+    display: block;
+    margin: 0 auto;
 }

@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-7">
+<div class="modalDialog">
+        <div class="modalHeader">
+                <img class="imgPlaceholder" src="assets/images/troubleshoot.png"> Troubleshoot
+            <div class="closeModalDialog" (click)="onCancel()" >X</div>
+        </div>
+        <div class="modalBody">
+                <label *ngIf="formError" style="color: red">Error Occured while submitting troubleshoot</label>
+            <form [formGroup]="troubleShootForm">
+              <!--  <div >
+                <span >
+                    <input type="checkbox" id="signature" name="signature" value="signature"  formControlName="signature">
+                    Signature for Issue
+                </span>
+                <label for="tickettitle"> </label>
+                </div> -->
+                <div class="form-group" style="font-family: Roboto; font-size: 13px;color: #000000;">
+                        <span for="description" style="line-height: 30px">Fix Description </span>
+                        <textarea type="text" id="fixdescription" style="box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1); border: solid 1px #bcbcbc;" class="form-control" formControlName="fixdescription" placeholder="Type description here..."></textarea>
+                </div>
+                <br>
+                <div class="row">
+                        <div class="col-md-8"></div>
+                        <div class="col-md-2">
+                            <button class="btn btn-default right btnstyle" type="button"  (click)="onCancel()" 
+                                >CANCEL</button>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-primary right" type="button" 
+                                [disabled]="troubleShootForm.invalid" (click)="onSubmit(troubleShootForm.value)" 
+                                    style="width: 75px; height: 31px; background-color: #007ad5;
+                                    font-family: Roboto;font-weight: bold;font-size: 13px;"> SUBMIT</button>
+                        </div>
+                    </div>
+            </form>
+        </div>
+    
+    
+    </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+    

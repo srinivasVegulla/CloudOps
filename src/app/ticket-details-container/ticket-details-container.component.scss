@@ -1,0 +1,132 @@
+.cursor{
+    cursor: pointer;
+}
+.tabdiv{
+    background-color: white;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 14px;
+    box-shadow: 0 4px 9px 0 rgba(0, 0, 0, 0.02);
+    border: solid 1px #dfe6e8;
+}
+.headingDiv{
+    font-family: Roboto;
+
+font-size: 15px;
+
+font-weight: 500;
+
+font-stretch: normal;
+
+font-style: normal;
+
+line-height: 1.38;
+
+letter-spacing: normal;
+
+color: #000000;
+}
+.lightText{
+    font-family: Roboto;
+
+    font-size: 14px;
+  
+    font-weight: normal;
+  
+    font-stretch: normal;
+  
+    font-style: normal;
+  
+    line-height: normal;
+  
+    letter-spacing: -0.05px;
+  
+    color: #767676;
+}
+.darkText{
+    font-family: Roboto;
+
+    font-size: 14px;
+  
+    font-weight: normal;
+  
+    font-stretch: normal;
+  
+    font-style: normal;
+  
+    line-height: normal;
+  
+    letter-spacing: -0.05px;
+  
+    color: #3a3b3f;
+}
+.comntDiv{
+    font-family: Roboto;
+
+    font-size: 12px;
+  
+    font-weight: normal;
+  
+    font-stretch: normal;
+  
+    font-style: normal;
+  
+    line-height: normal;
+  
+    letter-spacing: normal;
+  
+    color: #4d4d4d;
+}
+.backIcon{
+    font-size: 27px; 
+    font-weight: 71px; 
+    color: #007ad5;
+}
+.assignIcon{
+    font-size: 10px;
+}
+.modal-ticket-background{
+    position:fixed;
+    top:0;
+    right: 0;
+    left: 0;
+    bottom:0;
+    background-color: #000;
+    opacity:0.75;
+    z-index:900;
+}
+#assignedstatus{
+    width: 94%;
+    height: 28px;
+}
+.notesDiv{
+    border-top: 1px solid #e8e2e2;
+    padding: 5px;
+    padding-top: 14px;
+}
+select{
+    appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 0 8px;
+  font-weight: 500;
+    letter-spacing: -0.05px;
+    color: #000000;
+}
+.tableInput::after{
+    content: "";
+
+    position: absolute;
+    
+    top: 73%;
+    
+   // right: 95%;
+    
+   // border-width: 15px;
+   right: 22%;
+
+   border-width: 4px;
+    border-color: black transparent transparent transparent;
+    
+    border-style: solid;
+}

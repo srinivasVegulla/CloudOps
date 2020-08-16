@@ -1,0 +1,33 @@
+.utilizationWidget {
+    background-color: #ffffff;
+    height: 400px;
+    padding: 0 10px;
+ }
+ .utilizationHeader {
+   height: 40px;
+   line-height: 40px;
+   padding: 0 10px;
+   font-family: Roboto;
+   font-size: 18px;
+   font-weight: 600;
+ }
+ .utilizationBorder {
+     padding: 0 25px;
+ }
+ .highlightHeading {
+     font-weight: 700;
+     font-size: 16px;
+ }
+ .boxContainer {
+     height: 110px;
+     padding: 0 20px;
+     border-bottom: 1px solid grey;
+ }
+ .boxContainer:last-child {
+    border-bottom: none
+ }
+ .textContainer {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+ }

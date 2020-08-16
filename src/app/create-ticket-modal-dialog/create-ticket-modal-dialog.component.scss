@@ -1,0 +1,102 @@
+.modalDialog{
+    position:fixed;
+   
+    background-color: white;
+    border-radius: 6px;
+    z-index:1000;
+    top:10px;
+    width:60%;
+   // height: 60%;
+    
+    
+}
+.modalHeader{
+   
+    border-bottom: 1px solid #979797;
+    padding: 14px;
+    font-family: Roboto;
+    font-size: 19px;
+    font-weight: 500;
+    color: #000000;
+}
+.modalBody{
+    padding:15px;
+}
+.right{float: right;}
+.btn-default{
+    border: 1px solid #ced4da;
+    color:#0062cc;
+}
+.closeModalDialog{
+    float:right;
+    cursor: pointer;
+    text-align: center;
+    color: #383838;
+    font-weight: normal;
+    font-size: 17px;
+}
+
+.file-upload-button {
+    background-color: #ff5252;
+    border-radius: 50%;
+    height: 3rem;
+    overflow: hidden;
+    position: relative;
+    width: 3rem;
+
+  &::after {
+    content: '⇪';
+    color: #fff;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  input[type="file"] {
+        font-size: 100px;
+        left: 0;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+    }
+}
+
+.file-info {
+  color: #999;
+  font-family: Lato;
+  margin-left: 0.5rem;
+}
+.selectinput select{
+    appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 0 8px;
+}
+.selectinput::after{
+    content: "";
+
+    position: absolute;
+    
+    top: 64%;
+    
+   // right: 95%;
+    
+   // border-width: 15px;
+   right: 8%;
+
+   border-width: 4px;
+    border-color: black transparent transparent transparent;
+    
+    border-style: solid;
+}
+
+.btnstyle{
+    border: solid 1px #979797 !important;
+    border-radius: 6px;
+    box-shadow: 0 1px 7px 2px rgba(0, 0, 0, 0.17);
+    width: 75px;
+height: 31px;
+font-family: Roboto;
+font-weight: bold;
+line-height: normal;
+font-size: 13px;
+}

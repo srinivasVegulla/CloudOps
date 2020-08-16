@@ -1,0 +1,47 @@
+.modalDialog{
+    position:fixed;
+   
+    background-color: white;
+    border-radius: 6px;
+    z-index:1000;
+    top:60px;
+    width:45%;
+   // height: 60%;   
+   box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.17);
+    border: solid 1px #979797;
+}
+.btnstyle{
+    border: solid 1px #979797 !important;
+    border-radius: 6px;
+    box-shadow: 0 1px 7px 2px rgba(0, 0, 0, 0.17);
+    width: 75px;
+height: 31px;
+font-family: Roboto;
+font-weight: bold;
+line-height: normal;
+font-size: 13px;
+}
+.modalHeader{
+    border-bottom: 1px solid #979797;
+    padding: 13px;
+    font-family: Roboto;
+    font-size: 19px;
+    font-weight: 500;
+    color: #000000;
+}
+.modalBody{
+    padding:15px;
+}
+.right{float: right;}
+.btn-default{
+    border: 1px solid #ced4da;
+    color:#007ad5;
+}
+.closeModalDialog{
+    float:right;
+    cursor: pointer;
+    text-align: center;
+    color: #383838;
+    font-weight: normal;
+    font-size: 17px;
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CopsService } from '../service.component';
 
 @Component({
@@ -6,53 +6,117 @@ import { CopsService } from '../service.component';
   templateUrl: './log-insights.component.html',
   styleUrls: ['./log-insights.component.scss']
 })
-export class LogInsightsComponent implements OnInit {
+export class LogInsightsComponent implements OnInit, OnDestroy {
 
   logInsightData;
   rows = [];
-  totalRecords = [];
+  responseData = [];
   rowsPerPage = 10;
-  recperpage = [5,10,15,20];
+  recperpage = [5, 10, 15, 20];
   totalPages;
   currentPage = 1;
+  filteredData = [];
+  searchObj = [];
+  isSideNavOpenSubscription;
 
-  constructor(private copsService:CopsService) { }
+  constructor(private copsService: CopsService) { }
 
   ngOnInit() {
-    this.copsService.getLogInsights().subscribe((response)=>{      
+    this.copsService.getLogInsights().subscribe((response) => {
       this.logInsightData = response["hits"]["hits"];
       let data = [];
-      for(let i=0; i<this.logInsightData.length; i++) {
+      for (let i = 0; i < this.logInsightData.length; i++) {
         data.push(this.logInsightData[i]["_source"]);
       }
-      this.totalRecords = data;
+      this.responseData = data;
+      this.filteredData = data;
+      this.calculatePages();
+    });
+
+    this.copsService.getTenantsDetails().subscribe((response) => {
+      console.log("hi tD", response);
+    });
+    
+
+    this.isSideNavOpenSubscription = this.copsService.isSideNavOpen.subscribe(value => {
       this.calculatePages();
     });
   }
 
+  
+
   updateFilter(event, colName, innerColname) {
     let searchValue = event.target.value.toLowerCase();
-    if (!searchValue) {
-      this.rows = this.totalRecords;
-    }
-    let temp
-    if (innerColname) {
-       temp = this.totalRecords.filter(function(currItem) {
-        return currItem[colName][innerColname].toLowerCase().indexOf(searchValue) !== -1 || !searchValue;
-      });
-    } else {
-       temp = this.totalRecords.filter(function(currItem) {
-        return currItem[colName].toLowerCase().indexOf(searchValue) !== -1 || !searchValue;
+    let matchFound = false;
+    //If searchObj has elements and typed column belongs to any available searchObj
+    if (this.searchObj.length > 0) {
+      this.searchObj.map((ele) => {
+        if (ele.key == colName) {
+          ele.value = searchValue;
+          matchFound = true;
+        }
       });
     }
 
-    this.rows = temp;
+    //If typed column is not there in searchObj push that Column to search
+    if (!matchFound) {
+      this.searchObj.push({
+        'key': colName,
+        'value': searchValue
+      });
+    };
+
+    //Filter only to have non empty Search Criteria
+    let finalSearchObj = this.searchObj.filter((obj) => {
+      return (obj.value != '');
+    });
+
+    //Every Time reset the filtered data
+    this.filteredData = [];
+
+
+
+    if (finalSearchObj.length > 0) {
+      for (let i = 0; i < finalSearchObj.length; i++) {
+        let key = finalSearchObj[i].key;
+        let searchTextCol = finalSearchObj[i].value;
+        //first element searches from whole available devices
+        if (i == 0) {
+          this.filteredData = this.responseData.filter(function (currItem) {
+            if (key == 'host') {
+              return currItem[key]['name'].toLowerCase().indexOf(searchTextCol) !== -1
+            } else {
+              return currItem[key].toLowerCase().indexOf(searchTextCol) !== -1
+            }
+          });
+        } else {
+          //After first element searches from already filtered elements
+          this.filteredData = this.filteredData.filter(function (currItem) {
+            if (key == 'host') {
+              return currItem[key]['name'].toLowerCase().indexOf(searchTextCol) !== -1
+            } else {
+              return currItem[key].toLowerCase().indexOf(searchTextCol) !== -1
+            }
+          });
+        }
+      }
+    } else {
+      this.filteredData = this.responseData;
+    }
+
+    console.log("hi finally", finalSearchObj, this.filteredData);
+    this.calculatePages();
   }
   calculatePages() {
-    this.totalPages = ((this.totalRecords.length % this.rowsPerPage) == 0) ? (this.totalRecords.length / this.rowsPerPage): Math.ceil(this.totalRecords.length /this.rowsPerPage);
-    this.paginate();
+    if (!this.filteredData) {
+      this.totalPages = 1;
+      this.filteredData = [];
+    } else {
+      this.totalPages = ((this.filteredData.length % this.rowsPerPage) == 0) ? (this.filteredData.length / this.rowsPerPage) : Math.ceil(this.filteredData.length / this.rowsPerPage);
+      this.paginate();
+    }
   }
-  
+
 
   updateRecPerPage(page) {
     this.rowsPerPage = page;
@@ -61,7 +125,7 @@ export class LogInsightsComponent implements OnInit {
   }
 
   paginate() {
-    this.rows = this.totalRecords.slice(((this.currentPage-1)*this.rowsPerPage), ((this.currentPage)*this.rowsPerPage));
+    this.rows = this.filteredData.slice(((this.currentPage - 1) * this.rowsPerPage), ((this.currentPage) * this.rowsPerPage));
   }
 
   previous() {
@@ -71,6 +135,12 @@ export class LogInsightsComponent implements OnInit {
   next() {
     this.currentPage += 1;
     this.paginate();
+  }
+
+  ngOnDestroy() {
+    if(this.isSideNavOpenSubscription){
+      this.isSideNavOpenSubscription.unsubscribe();
+    }
   }
 
 }

@@ -1,6 +1,6 @@
 {
     "/ldapauth/*": {
-      "target": "http://10.138.77.193:11111",
+      "target": "http://10.138.77.193:12355",
       "secure": false
     }
   }
