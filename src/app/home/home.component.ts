@@ -22,7 +22,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   isalertSelectedSubscription;
   isalertSelected;
   ngOnInit() {
-  //  console.log("hi router ", this._route.url);
   this.splitedLinks = window.location.pathname.split('/');
   this.activatedLink = this.splitedLinks[this.splitedLinks.length -1];
   this.isalertSelectedSubscription = this.copsService.isAlertSelected.subscribe(value => {
@@ -32,10 +31,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   toggleSideNav() {
-    //console.log("entered", this.isSideNavOpen);
     this.isSideNavOpen = !this.isSideNavOpen;
     this.copsService.changeIsSideNavOpen(this.isSideNavOpen);
-   // console.log("completed",this.isSideNavOpen);
   }
 
   setActiveLink(activeLink) {

@@ -45,10 +45,9 @@ export class AssignTicketModalComponent implements OnInit {
  
   
  /* changeassignee(e){
-   // console.log("kjjhrkejllgmlfgml",this.assigneename);
-    //console.log("ffff",e.target.value)
+
     this.AssignForm.get('assigneename').setValue(e.target.value,{onlyself:true});
-    console.log("sssssss",this.AssignForm.get('assigneename'));
+    
   }*/
   
   onCancel(){
@@ -57,22 +56,17 @@ export class AssignTicketModalComponent implements OnInit {
   onAssign(){ 
     this.isLoading=true;
     let setvalue=$('#selectpicker').val();
-    //console.log(setvalue,"xcjxch");
-    //console.log($('#assigneename option:selected').text());
     for(let as of this.assignees){
       this.assigneeid=as[setvalue];
     }
    let  status=[{"New":1,"In Progress":2}];
-   // console.log('assignformdata', formdata.value);
     for(let st of status){
       this.statusid=st[this.statusas];
     }
     //let obj={"issue_id":this.ticketId,"assign_id":this.assigneeid,"status_id":this.statusid};
     let obj={"issue_id":this.ticketId,"assign_id":this.assigneeid};
-    console.log('obj_assignformdata', obj);
     this.copsService.sendAssigneeDetails(obj).subscribe(
       (response: any) => {
-        console.log(response,"sendAssigneeDetails");
         if(response == "OK") {
           this.isLoading=false;
           this.AssignError = false;
@@ -88,16 +82,12 @@ export class AssignTicketModalComponent implements OnInit {
     
   }
   updateFilter(event, colName) {
-    //console.log("updateifilter",event,colName);
     let searchValue = event.target.value.toLowerCase();
-   // console.log(searchValue);
     if (!searchValue) {
      this.assigneerows = this.responseData;
     }
     let temp;
-     // console.log("temp");
        temp = this.responseData.filter(function(currItem) {
-         //console.log("curritem",currItem);
         return currItem.toLowerCase().indexOf(searchValue) !== -1 || !searchValue;
       });
       this.assigneerows = temp;
@@ -106,7 +96,7 @@ ngAfterViewInit(){
   $('.selectpicker').trigger('change');
   $(".selectpicker").on("changed.bs.select", 
     function(e, clickedIndex, newValue, oldValue) {
-      //console.log(this.value, clickedIndex, newValue, oldValue,"select")
+
     });
 }
 }

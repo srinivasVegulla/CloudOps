@@ -56,7 +56,6 @@ export class LoginComponent implements OnInit {
       }, (error) => {
 
       }); */
-   console.log('hi lSer.isLogIn', loginData);
 
       this.loginError = false;
       //  this.storage.set("isLoggedIn", "true");

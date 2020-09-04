@@ -12,6 +12,7 @@ const HttpUploadOptions = {
 })
 export class CopsService {
 
+  backendURL =  'http://10.138.77.193:12355/';
   constructor(
    private http:HttpClient
   ) { }
@@ -33,7 +34,7 @@ export class CopsService {
 
   login(loginData) {
 
-    return this.http.post('http://10.138.77.193:12355/ldapauth', loginData)
+    return this.http.post( this.backendURL +'ldapauth', loginData)
         .pipe(map((res) => {
         return res;
         }));
@@ -70,7 +71,7 @@ export class CopsService {
   }
 
   getLogInsights() {
-    return this.http.get('http://10.138.77.193:11111/loginsights');
+    return this.http.get( this.backendURL +'loginsights');
   }
 
   //AutoRemediation
@@ -92,26 +93,26 @@ export class CopsService {
   }
   
   getTicketDetails(ticketobj){
-    return this.http.post('http://10.138.77.193:12355/ticketdetails', ticketobj)
+    return this.http.post( this.backendURL +'ticketdetails', ticketobj)
     .pipe(map((res) => {
     return res;
     }));
   }
 
   getTroubleshootDetails(ticketobj){
-    return this.http.post('http://10.138.77.193:12355/timeentrydetails', ticketobj)
+    return this.http.post( this.backendURL +'timeentrydetails', ticketobj)
     .pipe(map((res) => {
     return res;
     }));
   }
   updateLogs(obj){
-    return this.http.post('http://10.138.77.193:12355/logsupdate', obj)
+    return this.http.post( this.backendURL +'logsupdate', obj)
     .pipe(map((res) => {
     return res;
     }));
   }
   uploadFile(obj){
-    return this.http.post('http://10.138.77.193:12355/createissue', obj)
+    return this.http.post( this.backendURL +'createissue', obj)
     .pipe(map((res) => {
     return res;
     }));
@@ -129,7 +130,7 @@ export class CopsService {
    // formData.append("logs", object.logs);
    // console.log("formdata",formData.get("logs"));
     //console.log("formdata",formData.keys();
-    return this.http.post<any>('http://10.138.77.193:12355/createissue', formData 
+    return this.http.post<any>( this.backendURL +'createissue', formData 
     ,{
       // NOTE: Because we are posting a Blob (File is a specialized Blob
       // object) as the POST body, we have to include the Content-Type
@@ -156,7 +157,7 @@ export class CopsService {
     formData.append('file', file);
     console.log("formdata",formData.getAll);
 		this.http.post(
-				"http://10.138.77.193:12355/createissue",
+				 this.backendURL +"createissue",
 				formData ,{
           reportProgress: true,
           responseType: 'json'
@@ -169,82 +170,101 @@ export class CopsService {
   }*/
  
   sendAssigneeDetails(formdata){
-    return this.http.post('http://10.138.77.193:12355/assignissue', formdata)
+    return this.http.post( this.backendURL +'assignissue', formdata)
     .pipe(map((res) => {
     return res;
     }));
   }
   sendtroubleshoot(formdata){
-    return this.http.post('http://10.138.77.193:12355/createtroubleshoot', formdata)
+    return this.http.post( this.backendURL +'createtroubleshoot', formdata)
     .pipe(map((res) => {
     return res;
     }));
   }
   getTickets(){
-    return this.http.get('http://10.138.77.193:12355/tickets');
+    return this.http.get( this.backendURL +'tickets');
   }
   getTicketsHistory(){
-    return this.http.get('http://10.138.77.193:12355/history');
+    return this.http.get( this.backendURL +'history');
   }
   getSeverityIssues(){
-    return this.http.get('http://10.138.77.193:12355/severityissues');
+    return this.http.get( this.backendURL +'severityissues');
   }
   sendTicketUpdateDetails(editData){
-    return this.http.post('http://10.138.77.193:12355/statusupdate', editData)
+    return this.http.post( this.backendURL +'statusupdate', editData)
     .pipe(map((res) => {
     return res;
     }));
   }
   sendTicketNotesDetails(notesData){
-    return this.http.post('http://10.138.77.193:12355/notesupdate', notesData)
+    return this.http.post( this.backendURL +'notesupdate', notesData)
     .pipe(map((res) => {
     return res;
     }));
   }
   
   getVmInfo(){
-    return this.http.get('http://10.138.77.193:12355/vminfo');
+    return this.http.get( this.backendURL +'vminfo');
   }
 
   getHostStatus(){
-    return this.http.get('http://10.138.77.193:12355/hoststatus');
+    return this.http.get( this.backendURL +'hoststatus');
   }
 
   getAlaramsData(){
-    return this.http.get('http://10.138.77.193:12355/tickets');
+    return this.http.get( this.backendURL +'tickets');
   }
 
   getPeriodicActivitiesData(){
-    return this.http.get('http://10.138.77.193:12355/periodicactivities');
+    return this.http.get( this.backendURL +'periodicactivities');
   }
 
   getRegionalViewsData(){
-    return this.http.get('http://10.138.77.193:12355/regionalviews');
+    return this.http.get( this.backendURL +'regionalviews');
   }
   getSecurityVulnurablitiesData() {
-    return this.http.get('http://10.138.77.193:12355/securityvulnerabilities');
+    return this.http.get( this.backendURL +'securityvulnerabilities');
   }
 
   getAutoRemediationData() {
-    return this.http.get('http://10.138.77.193:12355/autoremediation');
+    return this.http.get( this.backendURL +'autoremediation');
   }
 
   getAutoRemediationLogsData() {
-    return this.http.get('http://10.138.77.193:12355/autoremediationlogs');
+    return this.http.get( this.backendURL +'autoremediationlogs');
   }
 
   getAppInsights(){
-    return this.http.get('http://10.138.77.193:12355/vminfo');
+    return this.http.get( this.backendURL +'vminfo');
   }
 
   getBillingData(data) {
-    return this.http.post('http://10.138.77.193:12355/vmbilling', data).pipe(map((res) => {
+    return this.http.post( this.backendURL +'vmbilling', data).pipe(map((res) => {
+      return res;
+      }));
+  }
+  getTenantsList() {
+    return this.http.get( this.backendURL +'tenantlist');
+  }
+
+  getTenantsDetails(){
+    return this.http.get( this.backendURL +'tenantsdetails');
+  }
+
+  getStartEndDates() {
+    return this.http.get( this.backendURL +'dates');
+  }
+
+  getDataforStartEndDays(data) {
+    return this.http.post( this.backendURL +'cluster_days', data).pipe(map((res) => {
       return res;
       }));
   }
 
-  getTenantsDetails(){
-    return this.http.get('http://10.138.77.193:12355/tenantsdetails');
+  getRCAdetails(data) {
+    return this.http.post( this.backendURL +'rcashow', data).pipe(map((res) => {
+      return res;
+      }));
   }
 
   hideAmchartsIcon() {

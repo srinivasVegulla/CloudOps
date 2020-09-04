@@ -28,10 +28,8 @@ export class TroubleshootModalComponent implements OnInit {
   onSubmit(troform){
   //post request with   @Input() ticketId;
   let obj={"Fix_description":troform.fixdescription,"hours":"4","activity_id":9,"issue_id":this.ticketId,"resource_id":"162"};
-  console.log(obj,"obj_sendtroubleshoot");
   this.copsService.sendtroubleshoot(obj).subscribe( 
   (response: any) => {
-    console.log(response,"sendtroubleshoot");
     if(response == "OK") {
       //this.isLoading=false;
       this.formError = false;

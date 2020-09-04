@@ -24,11 +24,9 @@ export class AlertCardsComponent implements OnInit {
 
   /*  this.copsService.getSeverityIssues().subscribe((response)=>{      
       
-      console.log("severityIssues",response);
       this.severityIssues=response;
     });*/
-    this.copsService.getTickets().subscribe((response)=>{      
-      console.log("getTickets_alertcards",response);
+    this.copsService.getTickets().subscribe((response)=>{
       this.ticketsData=response;
       this.severityIssues=this.ticketsData.count;
     });

@@ -41,6 +41,17 @@ svg:not(:root) {
     100%{transform:rotate(360deg);}
 }
 
+.vertcalTop {
+    margin: 10px 0 0 0;
+}
+.centerText {
+    text-align: center;
+}
+
+.rightAlignText {
+    text-align: right;
+}
+
 ::backdrop{
     background-color: white !important;
     

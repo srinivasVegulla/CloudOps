@@ -22,12 +22,10 @@ export class TicketHistoryComponent implements OnInit {
       
       this.rows = response;
       this.filterData = response;
-      console.log("hi ticHistory data", this.rows);
     });
   }
 
   filterForeCasts(val){
-     console.log("hi val", val)
   }
 
   updateFilter(event, colName, innerColname) {
@@ -56,11 +54,9 @@ export class TicketHistoryComponent implements OnInit {
   }
 
   toggleExpandRow(row) {
-    console.log('Toggled Expand Row!', row);
     this.ticHistoryTable.rowDetail.toggleExpandRow(row);
   }
   onDetailToggle(EV) {
-console.log("hello", EV)
   }
 
   getFormatedData(row, obj){
@@ -74,7 +70,6 @@ console.log("hello", EV)
   }
 
   getRowClass(rowIndex) {
-    console.log("hi row index", rowIndex);
     return {'xyz': true};
   }
 

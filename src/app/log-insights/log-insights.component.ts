@@ -33,11 +33,6 @@ export class LogInsightsComponent implements OnInit, OnDestroy {
       this.calculatePages();
     });
 
-    this.copsService.getTenantsDetails().subscribe((response) => {
-      console.log("hi tD", response);
-    });
-    
-
     this.isSideNavOpenSubscription = this.copsService.isSideNavOpen.subscribe(value => {
       this.calculatePages();
     });
@@ -103,8 +98,6 @@ export class LogInsightsComponent implements OnInit, OnDestroy {
     } else {
       this.filteredData = this.responseData;
     }
-
-    console.log("hi finally", finalSearchObj, this.filteredData);
     this.calculatePages();
   }
   calculatePages() {

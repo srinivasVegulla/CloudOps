@@ -1,7 +1,8 @@
 <div >
     <div class="utilizationHeader">App Insights</div>
   
-  <div class="widgetRow"  style="text-align: center">
+  <div class="loader" *ngIf="isLoading"></div>
+  <div class="widgetRow"  style="text-align: center" *ngIf="!isLoading">
     <ngx-datatable class="appInsightTable1 material" id="appInsightTable" [rows]="rows" #appInsightTable  [rowClass]="getRowClass"
         [scrollbarV]="true" [columnMode]="'flex'"
         [headerHeight]="80" [footerHeight]="50" [rowHeight]="50" 

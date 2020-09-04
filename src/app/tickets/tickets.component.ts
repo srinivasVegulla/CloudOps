@@ -144,7 +144,6 @@ export class TicketsComponent implements OnInit {
       this.filteredData = this.responseData;
     }
 
-    console.log("hi finally", finalSearchObj, this.filteredData);
     this.calculatePages();  
    /*  if (!searchValue) {
       this.rows = this.responseData;
@@ -243,7 +242,7 @@ export class TicketsComponent implements OnInit {
      this.isTicketModal=true;
   }
   openAssignModal(ticketId,Assignedto,status1){
-    console.log("status1",status1,Assignedto);//In Progress Divya tirumala
+//In Progress Divya tirumala
     this.isAssignModal=true;
     setTimeout(() => {
     

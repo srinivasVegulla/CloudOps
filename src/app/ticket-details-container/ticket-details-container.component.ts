@@ -68,7 +68,6 @@ export class TicketDetailsContainerComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges){
     this.isSave = false;
-    console.log("onchanges_alertdetails",this.ticketId);
     this.isEdit = false;
     this.fetchTicketDetails(); 
   }
@@ -85,9 +84,7 @@ export class TicketDetailsContainerComponent implements OnInit {
     }
 
     let objnotes={"issue_id":this.ticketId,"notes":this.ticketnotes,"assign_id":this.assigneeid};
-    console.log(objnotes,"objnotes_alertdetails");
     this.copsService.sendTicketNotesDetails(objnotes).subscribe(response => {
-     console.log(response,"sendTicketNotesDetails");
     if(response == "OK") {
       this.isnotesLoading=false;
       this.editError = false;
@@ -109,7 +106,6 @@ export class TicketDetailsContainerComponent implements OnInit {
     this.TroubleshootSuccess=false;
     this.isSave=false;
     this.isLoading=true;
-    //console.log("assignedstatus",this.assignedstatus, this.ticketdescription);
     for(let st3 of this.status){
     
       this.statusidnew=st3[this.assignedstatus];
@@ -119,9 +115,7 @@ export class TicketDetailsContainerComponent implements OnInit {
     }
 
     let obj3={"issue_id":this.ticketId,"status_id": this.statusidnew,"description":this.ticketdescription,"acknowledged_time":this.acknowledgedTime};
-    console.log(obj3,"obj_onSave");
     this.copsService.sendTicketUpdateDetails(obj3).subscribe(response => {
-      console.log(response,"sendTicketUpdateDetails");
       if(response == "OK") {
         this.isLoading=false;
         this.isSave=true;
@@ -147,7 +141,6 @@ export class TicketDetailsContainerComponent implements OnInit {
   }
   closeTroubleshoot(status){
     this.assignSuccess=false;
-      //console.log("isTroubleshoot");
       this.isTroubleshoot=false;
       this.isSave=false;
       if(status=="true"){
@@ -155,7 +148,6 @@ export class TicketDetailsContainerComponent implements OnInit {
       }
   }
   openTab(th){
-    //console.log(th,"dnfdf");
     window.open(th,'_blank');
   }
   
@@ -166,18 +158,14 @@ export class TicketDetailsContainerComponent implements OnInit {
     }
     let ticketdet=(this.ticketId).toString();
     let obj={"id":ticketdet,"status": this.statusid};
-    console.log(obj,"obj_getTicketDetails");
     
     this.copsService.getTicketDetails(obj).subscribe(response => {
-      console.log(response,"getTicketDetails_alertdeatils");
       this.ticketDetails = response;
       //this.preview();
     });
     
     let troubleshootId={"id": +ticketdet};
-    console.log("troubleshootId",troubleshootId);
     this.copsService.getTroubleshootDetails(troubleshootId).subscribe(response => {
-      console.log(response,"getTroubleshootDetails");
       this.troubleshootDetails=response;
       this.troubleshoot=this.troubleshootDetails[0];
       //this.preview();
@@ -244,7 +232,6 @@ export class TicketDetailsContainerComponent implements OnInit {
 
   }
   closeAssignModal(status){
-    console.log("closeAssignModal",status);
     this.isSave=false;
     this.TroubleshootSuccess=false;
     this.isAssignModal=false;
@@ -269,9 +256,7 @@ export class TicketDetailsContainerComponent implements OnInit {
   onSubmitLogs(){
     this.isLogsLoading=true;
     let obj={"issue_id":this.ticketId,"logs":this.bse64url,"file_name":this.fileData.name,"file_type":this.fileData.type};
-    console.log("inupdateticketlogs",obj);
    this.copsService.updateLogs(obj).subscribe( (response: any) => {
-     console.log("onSubmitLogs",response);
      if(response == "OK") {
       this.isLogsLoading=false;
       this.updateSuccess=true;

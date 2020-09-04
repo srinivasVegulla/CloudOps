@@ -17,6 +17,7 @@ export class ChargeBackAnalyticsComponent implements OnInit, OnDestroy {
   filteredData = [];
   searchObj = [];
   isSideNavOpenSubscription;
+  isLoading = true;
   dummyData = [
     {"tenantName": "Admin", "region": "INDIA", "cluster": "CLOUDOPS", "mBy": "VEGULLA", "bAmount": "130", "penality": "3"},
     {"tenantName": "EEASS", "region": "NEW YORK", "cluster": "CLOUDOPS", "mBy": "VEGULLA", "bAmount": "200", "penality": "13"},
@@ -30,24 +31,27 @@ export class ChargeBackAnalyticsComponent implements OnInit, OnDestroy {
 
   isDetailPage;
   selectedTenant;
+ // listOfTenants = ['admin', 'cloudforms', 'demo', 'eeaas', 'services', 'test_mq'];
+ listOfTenants;
 
   constructor(private copsService: CopsService) { }
 
   ngOnInit() {
-    /* this.copsService.getLogInsights().subscribe((response) => {
-      this.logInsightData = response["hits"]["hits"];
-      let data = [];
-      for (let i = 0; i < this.logInsightData.length; i++) {
-        data.push(this.logInsightData[i]["_source"]);
-      }
-      this.responseData = data;
-      this.filteredData = data;
-      this.calculatePages();
-    }); */
+    this.copsService.getTenantsList().subscribe((response) => {
+      this.listOfTenants = response
+     // this.listOfTenants = data;
+    },(error)=> {
+      this.listOfTenants = ['admin', 'cloudforms', 'demo', 'eeaas', 'services', 'test_mq'];
+    });
 
     this.copsService.getTenantsDetails().subscribe((response) => {
-      console.log("hi tD", response);
-      let data = this.dummyData;
+      let data = [];
+      for(var key in response) {       
+        if(this.listOfTenants.indexOf(key) > -1) {
+          data.push(response[key]);
+        }
+      }
+      this.isLoading = false;
       this.responseData = data;
       this.filteredData = data;
       this.calculatePages();
@@ -127,8 +131,6 @@ export class ChargeBackAnalyticsComponent implements OnInit, OnDestroy {
     } else {
       this.filteredData = this.responseData;
     }
-
-    console.log("hi finally", finalSearchObj, this.filteredData);
     this.calculatePages();
   }
   calculatePages() {

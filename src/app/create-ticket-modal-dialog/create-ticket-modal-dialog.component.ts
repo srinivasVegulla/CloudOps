@@ -46,22 +46,17 @@ export class CreateTicketModalDialogComponent implements OnInit {
   }
 
   onFileSelect(event): void {
-    console.log("inside onFileSelect");
     this.fileData=<File> event.target.files[0]; //file object
-     console.log(this.fileData,'selectfile');
    
     var reader = new FileReader();
      reader.readAsDataURL(this.fileData);
      reader.onload = (_event) => { 
       this.previewUrl = reader.result; 
       this.bse64url=(<string>reader.result).split(',')[1];
-      console.log(this.bse64url,"bse64url");    
-      
     }
     
   }
   onSubmit(createformdata){
-    console.log(createformdata,"createformdatacvd");
     this.isLoading=true;
 
     let data=this.CreateForm.value;
@@ -71,10 +66,8 @@ export class CreateTicketModalDialogComponent implements OnInit {
  
     /*let obj={"project_id":3,"ticket_title":data.tickettitle,"severity":+this.priorityid,"Description":data.description,"files":{"filename":this.fileData.name,"filetype":this.fileData.type,"file":this.previewUrl}};*/
     let obj={"project_id":3,"ticket_title":data.tickettitle,"severity":+this.priorityid,"Description":data.description,"logs":this.bse64url,"file_name":this.fileData.name,"file_type":this.fileData.type};
-    console.log(obj,"objectt_createticket");
   
     this.copsService.uploadFile(obj).subscribe( (response: any) => {
-      console.log("uploadFile_createticket",response);
       if(response == "OK") {
         this.isLoading=false;
         this.formError = false;
@@ -89,7 +82,6 @@ export class CreateTicketModalDialogComponent implements OnInit {
   }
 
   openTab(th){
-    console.log(th,"dnfdf");
     window.open(th,'_blank');
   }
 }

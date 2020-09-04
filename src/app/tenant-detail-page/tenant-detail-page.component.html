@@ -4,7 +4,219 @@
             <i class="fa fa-arrow-circle-o-left backIcon"></i>
         </span>
         <span>
-            {{tenant.tenantName}}
+            {{tenant['Tenant_name'] | uppercase}}
         </span>
     </div>
+    <div class="customRow">
+        <div class="col-md-12 noPadding" *ngIf="graphData.length > 7">
+            <div class="lowWidgetHeight">
+                <div class="customRow">
+                    <div class="col-md-3">
+                        <div>REGION NAME</div>
+                        <div>{{tenant?.region}}</div>
+                    </div>
+                    <div class="col-md-3">
+                        <div>CLUSTER NAME</div>
+                        <div>{{tenant['cluster_name']}}</div>
+                    </div>
+                    <div class="col-md-3">
+                        <div>BILLING</div>
+                        <div class="costColor">{{tenant?.tenant_cost}}</div>
+                    </div>
+                    <div class="col-md-3">
+                        <div>PENALITY</div>
+                        <div class="penalityColor">{{tenant['penality']}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 noPadding" *ngIf="graphData.length < 8">
+            <div class="tenantTabConainer">
+                <div class="customRow">
+                    <div class="col-md-6">
+                        <div>REGION NAME</div>
+                        <div>{{tenant?.region}}</div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>CLUSTER NAME</div>
+                        <div>{{tenant['cluster_name']}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="tenantTabConainer vertcalTop">
+                <div class="customRow">
+                    <div class="col-md-12 monthHeading centerText">{{widgetDateHeading | uppercase}}</div>
+                    <div class="col-md-4">
+                        <div>BILLING</div>
+                        <div class="costColor">{{tenant?.tenant_cost}}</div>
+                    </div>
+                    <div class="col-md-4">
+                        
+                    </div>
+                    <div class="col-md-4">
+                        <div>PENALITY</div>
+                        <div class="penalityColor">{{tenant['penality']}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div [ngClass]="{'col-md-7': (graphData.length < 8),'col-md-12 noPadding vertcalTop': (graphData.length > 7)}" >
+            <div class="graphContainer">
+                <div class="widgetTitle">
+                    <div class="pull-left">Billing</div>
+                    <div class="pull-right"> <a (click)="selectDateR($event)" class="btn btn-default fontSize" id="exp-date-range"  role="button" data-toggle="collapse" aria-expanded="false"
+                                aria-controls="collapseExample">
+                                Select Date Range <i class="glyphicon glyphicon-calendar"></i>
+                            </a>
+                    </div>
+                                   
+                    <div class="row row-mod upper-div" class="filterDates">
+                        <div>
+                            <div class="collapse" id="collapseExample">
+                                <div class="well">
+
+                                    <div class="form-group fontSize">
+                                        <mat-form-field>
+                                            <mat-label style="color: black; ">Start Date</mat-label>
+                                            <input matInput [min]="calMinDate" [max]="calMaxDate" [matDatepicker]="picker1" placeholder="Choose start date" disabled (dateInput)="setCalStartDate('input', $event)">
+                                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                           <mat-datepicker #picker1 disabled="false"></mat-datepicker>
+                                            
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="form-group">
+                                        <mat-form-field>
+                                            <mat-label style="color: black; ">End Date</mat-label>
+                                            
+
+                                           <input matInput [min]="calStartDate" [max]="calMaxDate" [matDatepicker]="picker2" placeholder="Choose end date" disabled (dateInput)="setCalEndDate('input', $event)">
+                                            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                           <mat-datepicker #picker2 disabled="false"></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                    <button class="btn btn-primary fontSize" (click)="getDataForStartEndDays();selectDateR()"
+                                        style="width:100%;">
+                                        Apply Dates
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="pull-right selectPadding" *ngIf="showNextDataOnGraph">
+                        Visible Graph Columns <select class=" selectInput" (change)="updateRecPerGraphPage($event.target.value)" value={{graphsPerPage}}>
+                            <option class="optionInput" *ngFor="let x of recperGraphpage" value="{{x}}">{{x}}</option>
+                            </select>
+                    </div>
+                    
+                </div>
+                <div class="nextPreviousWidth" *ngIf="showNextDataOnGraph">
+                <button [disabled]="currentGraphPage == 1" (click)="previousGraph()" [ngClass]="{'disabledBtn': (currentGraphPage == 1), 'activeBtn': !(currentGraphPage == 1)}">
+                    <i class="glyphicon glyphicon-menu-left"></i>
+                </button>  
+                 </div>
+                <div [ngClass]="{'graphArea': !showNextDataOnGraph, 'PreNextGraphArea': showNextDataOnGraph}" *ngIf="showDataOngraph.length > 0">
+                    <ngx-charts-bar-vertical
+                    [results]="showDataOngraph"
+                    [scheme]="{ domain: [ '#007ad5' ] }"
+                    [barPadding]="10"
+                    [xAxis]="true"
+                    [yAxis]="true"
+                    [showDataLabel]="true"
+                    [xAxisLabel]="'Date'"
+                    [yAxisLabel]="'Cost'"
+                
+                    [showXAxisLabel]="true"
+                    [showYAxisLabel]="true">
+                  </ngx-charts-bar-vertical>
+                </div>
+                <div class="nextPreviousWidth" *ngIf="showNextDataOnGraph"><button (click)="nextGraph()" [disabled]="currentGraphPage == totalGraphPages" [ngClass]="{'disabledBtn': (currentGraphPage == totalGraphPages), 'activeBtn': !(currentGraphPage == totalGraphPages)}"><i class="glyphicon glyphicon-menu-right"></i></button></div>
+                <div class="graphArea" *ngIf="graphData.length == 0">
+                    <div class="noDataMessage">No Billing data in the selected date range.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="vmTableContainer vertcalTop">
+    <div class="widgetTitle">List Of VM's ({{responseData?.length}})</div>
+    <div class="widgetRow"  style="text-align: center">
+        <ngx-datatable class="tenantDetailTable material" id="tenantDetailTable" [rows]="rows" 
+            [scrollbarV]="true" [columnMode]="'flex'"
+            [headerHeight]="80" [footerHeight]="50" [rowHeight]="50" 
+        >
+      
+        <ngx-datatable-column [sortable]="true" [flexGrow]="1">
+            <ng-template let-column="column"  ngx-datatable-header-template headerText> 
+                <div class="dataTableHeader">VM NAME
+                <div class="tableInputContainer" >
+                    <input type="text" class="tableInput" (keyup)="updateFilter($event, 'vmName')">
+                </div>     
+                </div>
+            </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template [ngClass]="tablebody" >
+                    <div class="fontrow "> {{row['vmName']}}</div>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [sortable]="true" [flexGrow]="1">
+          <ng-template let-column="column"  ngx-datatable-header-template headerText> 
+              <div class="dataTableHeader">REGION
+              <div class="tableInputContainer" >
+                      <div class="form-group tableInput formNoPadding">
+                        <input type="text" class="tableInput" (keyup)="updateFilter($event, 'region')">
+                             <!--  <select class="form-control" style="font-size: 13px;text-align: center" id="reset" (change)="updateFilter($event, 'loglevel')">
+                                  <option value="" selected >All</option>
+                                  <option value="ERROR" >ERROR</option>
+                                  <option value="WARNING"  >WARNING</option>
+                              </select>  --> 
+                      </div>
+              </div>  
+          </div>   
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+                  <div class="fontrow"> {{row.region}}</div>
+          </ng-template>
+      </ngx-datatable-column>
+        <ngx-datatable-column [sortable]="true" [flexGrow]="1">
+            <ng-template let-column="column" ngx-datatable-header-template headerText > 
+                <div class="dataTableHeader">COST
+                <div class="tableInputContainer" >
+                    <input type="text"  class="tableInput" (keyup)="updateFilter($event, 'cost')">
+                </div> 
+                </div>    
+            </ng-template>
+            <ng-template let-row="row"  ngx-datatable-cell-template headerText>
+                    <div class="fontrow" id="titlediv"> {{row.cost}}</div>
+            </ng-template>
+        </ngx-datatable-column>
+        
+      
+        <ngx-datatable-footer>
+            <ng-template ngx-datatable-footer-template>
+                <div class="row wid">
+                <div class="col-md-4"></div>
+                <div class="col-md-3 seinput" *ngIf="filteredData.length != 0">
+                    Rows per page <select class=" selectInput" (change)="updateRecPerPage($event.target.value)" value={{rowsPerPage}}>
+                    <option class="optionInput" *ngFor="let x of recperpage" value="{{x}}">{{x}}</option>
+                    </select>
+                </div>
+                <div class="col-md-2" *ngIf="filteredData.length != 0"> {{((currentPage-1)*this.rowsPerPage)+1}} - <span *ngIf="currentPage != totalPages">{{this.currentPage*this.rowsPerPage}}</span>
+                    <span *ngIf="currentPage == totalPages">{{filteredData.length}}</span> of {{filteredData.length}}
+                </div>
+                <div class="col-md-3" *ngIf="filteredData.length != 0">
+                    <button class="preNxtBtn"  [ngStyle]="{'color':currentPage == 1 ? 'rgba(118, 118, 118, 0.7)' : '#007ad5'}" [ngStyle]="{'cursor':currentPage == 1 ? 'default' : 'pointer'}" 
+                        [disabled]="currentPage == 1" (click) = previous()>PREVIOUS</button>
+                    <button class="preNxtBtn"  [ngStyle]="{'color':currentPage == totalPages ? 'rgba(118, 118, 118, 0.7)' : '#007ad5'}" [ngStyle]="{'cursor':currentPage == totalPages ? 'default' : 'pointer'}"
+                        [disabled]="currentPage == totalPages" (click)=next()>NEXT</button>
+                </div>
+                </div>
+                 
+                
+            </ng-template>
+        </ngx-datatable-footer>
+      
+        </ngx-datatable>
+    </div>
+</div>
+   
 </div>

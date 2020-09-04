@@ -19,13 +19,14 @@ export class AppInsightsComponent implements OnInit, OnDestroy {
   currentPage = 1;
   filteredData = [];
   searchObj = [];
+  isLoading = true;
   billingInfoArray = [
-    {"key": "No_of_hours", "displayName": "ACTIVE FOR", "appenedUnit": ""},
+    {"key": "No_of_hours", "displayName": "ACTIVE FOR", "appenedUnit": " Hr"},
     {"key": "No_of_vcpus", "displayName": "VCPU ALLOCATED", "appenedUnit": ""},
     {"key": "Disk", "displayName": "DISK ALLOCATED", "appenedUnit": " GB"},
     {"key": "RAM", "displayName": "RAM ALLOCATED", "appenedUnit": " GB"},
     {"key": "flavor_name", "displayName": "FLAVOUR NAME", "appenedUnit": ""},
-    {"key": "vcpus_cost", "displayName": "VCPC COST", "appenedUnit": ""},
+    {"key": "vcpus_cost", "displayName": "VCPU COST", "appenedUnit": ""},
     {"key": "disk_cost", "displayName": "DISK COST", "appenedUnit": ""},
     {"key": "RAM_cost", "displayName": "RAM COST", "appenedUnit": ""},
  
@@ -37,6 +38,7 @@ export class AppInsightsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.copsService.getAppInsights().subscribe((response) => {
       this.appInsightData = response["vminfo"];
+      this.isLoading = false;
       this.appInsightData.map((resObj)=> {
         let data = {'vm_id': resObj['id']};
         this.copsService.getBillingData(data).subscribe((response) => {
@@ -116,8 +118,6 @@ export class AppInsightsComponent implements OnInit, OnDestroy {
     } else {
       this.filteredData = this.responseData;
     }
-
-    console.log("hi finally", finalSearchObj, this.filteredData);
     this.calculatePages();
   }
   calculatePages() {

@@ -47,19 +47,16 @@ ticketdata;
 
    this.fetchtickets();
   }
-  fetchtickets(){
-    this.copsService.getTickets().subscribe((response)=>{      
-      console.log("getTickets_alertdetailspage",response);
+  fetchtickets() {
+    this.copsService.getTickets().subscribe((response)=>{  
       this.ticketdata=response;
       this.tickets=this.ticketdata.tickets;
-     // console.log("alert ticketDetails",this.tickets);
       this.filteredDetails = this.tickets;
       this.setMajorMinorCritical();
     });
   }
 //ngOnchanges as alert details
-  selectTicket(ticket){
-    console.log("selectTicket_alertdetailspage",ticket.ticketid);
+  selectTicket(ticket) {
     this.ticketId = ticket.ticketid;
     this.ticketDiv = this.ticketId;
     this.ticketstatus = ticket.severity;
@@ -76,25 +73,22 @@ ticketdata;
       return currItem[colName].toLowerCase().indexOf(searchValue) !== -1 || !searchValue;
     });
     this.filteredDetails = temp;
-    //console.log("colnames",colName,searchValue,this.filteredDetails);
     }
     this.setMajorMinorCritical();
   }
 
-  setMajorMinorCritical(){
-    //console.log("filteredDetails",this.filteredDetails);
+  setMajorMinorCritical() {
     let criticalTickets = [];
     let majorTickets=[];
     let minorTickets=[];
-    for(let i=0; i< this.filteredDetails.length; i++) {
-      //console.log(this.filteredDetails[i].severity,"this.filteredDetails.severity");
+    for (let i=0; i< this.filteredDetails.length; i++) {
       if(this.filteredDetails[i].severity == "Critical"){
         criticalTickets.push(this.filteredDetails[i]);
        
-      }else if(this.filteredDetails[i].severity == "Major"){
+      } else if(this.filteredDetails[i].severity == "Major"){
         majorTickets.push(this.filteredDetails[i]);
        
-      }else if(this.filteredDetails[i].severity == "Minor"){
+      } else if(this.filteredDetails[i].severity == "Minor"){
         minorTickets.push(this.filteredDetails[i]);
       
       }
@@ -102,6 +96,5 @@ ticketdata;
     this.criticalslicedticket = criticalTickets.slice(0,5);
     this.majorslicedticket = majorTickets.slice(0,5);
     this.minorslicedticket = minorTickets.slice(0,5);
-    //console.log(this.minorslicedticket.length,"minorslicedticket");
   }
 }

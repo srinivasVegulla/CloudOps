@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef, Inject } from '@angular/core'
 import * as d3 from 'd3';
 import * as $ from 'jquery';
 import { DOCUMENT } from '@angular/common';
+import { CopsService } from '../service.component';
+
 @Component({
   selector: 'app-rcachart',
   templateUrl: './rcachart.component.html',
@@ -9,50 +11,54 @@ import { DOCUMENT } from '@angular/common';
 })
 export class RCAchartComponent implements OnInit {
 
-  constructor(@Inject(DOCUMENT) private document: any) { }
-dataList;
-margin;
-width;
-height;
-svg;
-duration;
-root;
-tree;
-nodes;
-links;
-isFullscreen=false;
+  constructor (
+     @Inject(DOCUMENT) private document: any,
+     private copsService:CopsService
+  ) { }
+
+  dataList;
+  margin;
+  width;
+  height;
+  svg;
+  duration;
+  root;
+  tree;
+  nodes;
+  links;
+  isFullscreen = false;
   @ViewChild('opencloseDiv', {static: false})
   private chartContainer: ElementRef;
 
-treeData =
-  {
-    "name": "CPU Load",
-    "children": [
-      { "name": "VM1"},
-      { "name": "VM2" },
-      { "name": "VM3" },
-      { "name": "VM8" },
-      { "name": "VM4"},
-      { "name": "VM5" },
-      { "name": "VM6" },
-      { "name": "VM7" }
-    ]
-  };
+  treeData =
+    {
+      "name": "CPU Load",
+      "children": [
+        { "name": "VM1" },
+        { "name": "VM2" },
+        { "name": "VM3" },
+        { "name": "VM8" },
+        { "name": "VM4" },
+        { "name": "VM5" },
+        { "name": "VM6" },
+        { "name": "VM7" }
+      ]
+    };
   ngOnInit() {
-  }
- 
+    let obj = {"id": "3605345a-6728-44ad-bb20-88ba57e9c890"}
+    this.copsService.getRCAdetails(obj).subscribe((res)=>{
+      console.log("hi res...", res);
+    });
+  } 
 
   toggleFullscreen(){
-   // console.log("toggleFullscreen");
     const elem=this.chartContainer.nativeElement;
-   // console.log(elem,"elem");
     //let elem=document.body;
    // let methodToBeInvoked=element1.requestFullScreen
    //$('svg').css('width',screen.width);
   // $('svg').css('height',screen.height);
   if (!this.isFullscreen ){
     this.isFullscreen=true;
-      console.log("outside exit",this.isFullscreen);
    if (elem.requestFullscreen) {
     elem.requestFullscreen();
   } else if (elem.msRequestFullscreen) {
@@ -65,7 +71,6 @@ treeData =
   }
   else{
     this.isFullscreen=false;
-    console.log("inside xit",this.isFullscreen);
     if (this.document.exitFullscreen) {
       this.document.exitFullscreen();
     } else if (this.document.msExitFullscreen) {

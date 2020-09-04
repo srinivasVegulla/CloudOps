@@ -29,7 +29,6 @@ export class AutoRemediationLogsComponent implements OnInit, OnDestroy {
       }
       this.responseData = data;
       this.filteredData = data;
-      console.log("hi autoRemedeiation data", data )
       this.calculatePages();
     });
 
@@ -96,8 +95,6 @@ export class AutoRemediationLogsComponent implements OnInit, OnDestroy {
     } else {
       this.filteredData = this.responseData;
     }
-
-    console.log("hi finally", finalSearchObj, this.filteredData);
     this.calculatePages();
   }
   calculatePages() {

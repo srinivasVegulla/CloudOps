@@ -1,7 +1,7 @@
 <div *ngIf="!isDetailPage">
-    <div class="utilizationHeader">List Of Tenants</div>
-  
-  <div class="widgetRow"  style="text-align: center">
+  <div class="utilizationHeader">List Of Tenants</div>
+  <div class="loader" *ngIf="isLoading"></div>
+  <div class="widgetRow" *ngIf="!isLoading" style="text-align: center">
     <ngx-datatable class="listOfTenants material" id="listOfTenants" [rows]="rows" 
         [scrollbarV]="true" [columnMode]="'flex'"
         [headerHeight]="80" [footerHeight]="50" [rowHeight]="50" 
@@ -11,12 +11,12 @@
         <ng-template let-column="column"  ngx-datatable-header-template headerText> 
             <div class="dataTableHeader">TENANT
             <div class="tableInputContainer" >
-                <input type="text" class="tableInput" (keyup)="updateFilter($event, 'tenantName')">
+                <input type="text" class="tableInput" (keyup)="updateFilter($event, 'Tenant_name')">
             </div>     
             </div>
         </ng-template>
         <ng-template let-row="row" ngx-datatable-cell-template [ngClass]="tablebody" >
-                <div class="fontrow cursor link" (click)="goToDetailPage(row)"> {{row['tenantName']}}</div>
+                <div class="fontrow cursor link" (click)="goToDetailPage(row)"> {{row['Tenant_name']}}</div>
         </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column [sortable]="true" [flexGrow]="1">
@@ -41,36 +41,36 @@
         <ng-template let-column="column" ngx-datatable-header-template headerText > 
             <div class="dataTableHeader">CLUSTER
             <div class="tableInputContainer" >
-                <input type="text"  class="tableInput" (keyup)="updateFilter($event, 'cluster')">
+                <input type="text"  class="tableInput" (keyup)="updateFilter($event, 'cluster_name')">
             </div> 
             </div>    
         </ng-template>
         <ng-template let-row="row"  ngx-datatable-cell-template headerText>
-                <span class="fontrow" id="titlediv"> {{row.cluster}}</span>
+                <span class="fontrow" id="titlediv"> {{row.cluster_name}}</span>
         </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column [sortable]="true"  [flexGrow]="1">
         <ng-template let-column="column" ngx-datatable-header-template> 
             <div class="dataTableHeader">MAINTAINED BY
               <div class="tableInputContainer" >
-                <input type="text"  class="tableInput" (keyup)="updateFilter($event,'mBy')">
+                <input type="text"  class="tableInput" (keyup)="updateFilter($event,'maintained_by')">
             </div> 
             </div>      
         </ng-template>
         <ng-template let-row="row" ngx-datatable-cell-template>
-        <div class="fontrow">{{row.mBy}}</div>
+        <div class="fontrow">{{row.maintained_by}}</div>
         </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column [sortable]="true"  [flexGrow]="1">
         <ng-template let-column="column" ngx-datatable-header-template headerText> 
             <div class="dataTableHeader">BILL AMOUNT
               <div class="tableInputContainer" >
-                <input type="text"  class="tableInput" (keyup)="updateFilter($event,'bAmount')">
+                <input type="text"  class="tableInput" (keyup)="updateFilter($event,'tenant_cost')">
             </div> 
             </div>      
         </ng-template>
         <ng-template let-row="row" ngx-datatable-cell-template>
-        <div  class="fontrow">{{row.bAmount}}</div>
+        <div  class="fontrow">{{row.tenant_cost}}</div>
         </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column [sortable]="true"  [flexGrow]="1">

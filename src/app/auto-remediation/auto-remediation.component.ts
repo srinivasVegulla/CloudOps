@@ -110,7 +110,7 @@ export class AutoRemediationComponent implements OnInit, OnDestroy {
     label.text = percent + '%';
     label.horizontalCenter = "middle";
     label.verticalCenter = "middle";
-    label.fontSize = 20;
+    label.fontSize = 16;
     this.copsService.hideAmchartsIcon();
 
     if(chartName = 'chartAutoRemidiation') {

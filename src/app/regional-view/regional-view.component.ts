@@ -113,7 +113,6 @@ export class RegionalViewComponent implements OnInit, OnDestroy{
     this.expandDropDown = !this.expandDropDown;
   }
   prepareTableData(region) {
-    console.log("hi regional", this.regionalViewData)
     let selectedRegionTableData = this.regionalViewData.filter(obj => {
       return (obj['continent'] == region);
     });

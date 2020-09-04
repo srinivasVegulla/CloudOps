@@ -3,68 +3,68 @@
         <span [ngClass]="{'col-md-2': !isSideNavOpen, imageOnlyWidth: isSideNavOpen}">
             <img *ngIf="activatedLink != 'dashboard'" src="assets/images/copsimages/Icons_Images/Dashboard_18X18_grey.svg">
             <img *ngIf="activatedLink == 'dashboard'" src="assets/images/copsimages/Icons_Images/Dashboard_18X18.svg"></span>
-        <span class="col-md-10" *ngIf="!isSideNavOpen">Dashboard</span>
+        <span class="col-md-9" *ngIf="!isSideNavOpen">Dashboard</span>
     </li>
     <li routerLink="topology" routerLinkActive="activeNavLink" (click)="setActiveLink('topology')"> 
         <span [ngClass]="{'col-md-2': !isSideNavOpen, imageOnlyWidth: isSideNavOpen}">
             <img *ngIf="activatedLink != 'topology'" src="assets/images/topology/Topology Icon.svg">
             <img *ngIf="activatedLink == 'topology'" src="assets/images/topology/Topology Icon.png"></span>
-        <span class="col-md-10" *ngIf="!isSideNavOpen">Topology</span>
+        <span class="col-md-9" *ngIf="!isSideNavOpen">Topology</span>
     </li>
     <li routerLink="tickets" routerLinkActive="activeNavLink" (click)="setActiveLink('tickets')">
         <span [ngClass]="{'col-md-2': !isSideNavOpen, imageOnlyWidth: isSideNavOpen}">
                 <img *ngIf="activatedLink == 'tickets'" src="assets/images/tickets_select.png">
                 <img *ngIf="activatedLink != 'tickets'" src="assets/images/tickets_unselect.png">
         </span>
-        <span class="col-md-10" *ngIf="!isSideNavOpen">Tickets History</span>
+        <span class="col-md-9" *ngIf="!isSideNavOpen">Tickets History</span>
     </li>
     <li routerLink="autoRemediation" routerLinkActive="activeNavLink" (click)="setActiveLink('autoRemediation')">
         <span [ngClass]="{'col-md-2': !isSideNavOpen, imageOnlyWidth: isSideNavOpen}">
                 <img *ngIf="activatedLink == 'tickets'" src="assets/images/tickets_select.png">
                 <img *ngIf="activatedLink != 'tickets'" src="assets/images/tickets_unselect.png">
         </span>
-        <span class="col-md-10" *ngIf="!isSideNavOpen">Auto Remediation</span>
+        <span class="col-md-9" *ngIf="!isSideNavOpen">Auto Remediation</span>
     </li>
     <!-- <li routerLink="ticketHistory" routerLinkActive="activeNavLink" (click)="setActiveLink('ticketHistory')">  
         <span [ngClass]="{'col-md-2': !isSideNavOpen, imageOnlyWidth: isSideNavOpen}">
                 <img *ngIf="activatedLink == 'ticketHistory'" src="assets/images/copsimages/Icons_Images/Tickets_history_18X18_blue.svg">
                 <img *ngIf="activatedLink != 'ticketHistory'" src="assets/images/copsimages/Icons_Images/Tickets_history_18X18_grey.svg">
         </span>
-        <span class="col-md-10" *ngIf="!isSideNavOpen">Ticket History</span>
+        <span class="col-md-9" *ngIf="!isSideNavOpen">Ticket History</span>
     </li> -->
     <!-- <li routerLink="utilizationHistory" routerLinkActive="activeNavLink" (click)="setActiveLink('utilizationHistory')"> 
         <span [ngClass]="{'col-md-2': !isSideNavOpen, imageOnlyWidth: isSideNavOpen}">
             <img *ngIf="activatedLink == 'utilizationHistory'" src="assets/images/utilisation_select.png">
             <img *ngIf="activatedLink != 'utilizationHistory'" src="assets/images/utilisation_unselect.png">
         </span>
-        <span class="col-md-10" *ngIf="!isSideNavOpen">Utilization Details</span>
+        <span class="col-md-9" *ngIf="!isSideNavOpen">Utilization Details</span>
     </li>
     <li routerLink="serviceHealth" routerLinkActive="activeNavLink" (click)="setActiveLink('serviceHealth')"> 
         <span [ngClass]="{'col-md-2': !isSideNavOpen, imageOnlyWidth: isSideNavOpen}">
             <img *ngIf="activatedLink == 'serviceHealth'" src="assets/images/servicehealth_select.png">
             <img *ngIf="activatedLink != 'serviceHealth'" src="assets/images/servicehealth_unselect.png">
         </span>
-        <span class="col-md-10" *ngIf="!isSideNavOpen">Service Health</span>
+        <span class="col-md-9" *ngIf="!isSideNavOpen">Service Health</span>
     </li> -->
     <li routerLink="chargeBackanalytics" routerLinkActive="activeNavLink" (click)="setActiveLink('chargeBackanalytics')"> 
         <span [ngClass]="{'col-md-2': !isSideNavOpen, imageOnlyWidth: isSideNavOpen}">
             <img *ngIf="activatedLink == 'chargeBackanalytics'" src="assets/images/loginsights_select.png">
                 <img *ngIf="activatedLink != 'chargeBackanalytics'" src="assets/images/loginsights_unselect.png">
         </span>
-        <span class="col-md-10" *ngIf="!isSideNavOpen">ChargeBack Analytics</span>
+        <span class="col-md-9" *ngIf="!isSideNavOpen">ChargeBack Analytics</span>
     </li>
     <li routerLink="appInsights" routerLinkActive="activeNavLink" (click)="setActiveLink('appInsights')"> 
         <span [ngClass]="{'col-md-2': !isSideNavOpen, imageOnlyWidth: isSideNavOpen}">
             <img *ngIf="activatedLink == 'appInsights'" src="assets/images/loginsights_select.png">
                 <img *ngIf="activatedLink != 'appInsights'" src="assets/images/loginsights_unselect.png">
         </span>
-        <span class="col-md-10" *ngIf="!isSideNavOpen">App Insights</span>
+        <span class="col-md-9" *ngIf="!isSideNavOpen">App Insights</span>
     </li>
     <li routerLink="logInsights" routerLinkActive="activeNavLink" (click)="setActiveLink('logInsights')"> 
         <span [ngClass]="{'col-md-2': !isSideNavOpen, imageOnlyWidth: isSideNavOpen}">
             <img *ngIf="activatedLink == 'logInsights'" src="assets/images/loginsights_select.png">
                 <img *ngIf="activatedLink != 'logInsights'" src="assets/images/loginsights_unselect.png">
         </span>
-        <span class="col-md-10" *ngIf="!isSideNavOpen">Log Insights</span>
+        <span class="col-md-9" *ngIf="!isSideNavOpen">Log Insights</span>
     </li>
 </ul>
